@@ -577,6 +577,74 @@ ul { list-style: none; }
 .link--purple:hover { opacity: 0.75; }
 
 /* ============================================================
+   DISCORD SEKCE (HLAVNÍ STRÁNKA)
+   ============================================================ */
+.discord-section {
+  padding: clamp(40px, 6vw, 70px) 0;
+}
+
+.discord-section__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 5vw, 64px);
+  flex-wrap: wrap;
+}
+
+.discord-section__text {
+  flex: 1 1 360px;
+  max-width: 520px;
+}
+
+.discord-section__title {
+  text-align: left;
+  margin-bottom: 16px;
+}
+.discord-section__title i { color: #5865F2; }
+
+.discord-section__desc {
+  color: var(--c-text-muted);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.discord-section__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 28px;
+  background: #5865F2;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 6px 22px rgba(88, 101, 242, 0.4);
+  transition: background var(--tr), transform var(--tr), box-shadow var(--tr);
+}
+.discord-section__btn:hover {
+  background: #4752c4;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(88, 101, 242, 0.55);
+}
+
+.discord-section__widget {
+  flex: 0 0 auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+  line-height: 0;
+}
+.discord-section__widget iframe {
+  display: block;
+  max-width: 100%;
+}
+
+@media (max-width: 760px) {
+  .discord-section__text { text-align: center; flex-basis: 100%; }
+  .discord-section__title { text-align: center; }
+}
+
+/* ============================================================
    FOOTER
    ============================================================ */
 .footer {

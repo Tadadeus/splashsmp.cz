@@ -84,10 +84,10 @@
           <span>Načítám formulář…</span>
         </div>
         <iframe
+          id="googleForm"
           src="https://docs.google.com/forms/d/e/1FAIpQLSdXhMmzLNQCbgksAZKZNvnEUsF_oI7xmcpkxiM_dlltn0WOOA/viewform?embedded=true"
           title="Přihlašovací formulář SplashSMP"
-          loading="lazy"
-          onload="document.getElementById('formLoader')?.remove()">
+          loading="lazy">
           Načítám…
         </iframe>
       </div>
@@ -99,6 +99,40 @@
       </p>
     </div>
   </section>
+
+  <!-- ════════════════════════════════════════
+       MODAL PO ODESLÁNÍ FORMULÁŘE (DISCORD POZVÁNKA)
+  ════════════════════════════════════════ -->
+  <div class="discord-modal" id="discordModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="discordModalTitle">
+    <div class="discord-modal__backdrop" data-close></div>
+    <div class="discord-modal__box">
+      <button class="discord-modal__close" id="discordModalClose" aria-label="Zavřít" data-close>
+        <i class="fas fa-xmark"></i>
+      </button>
+
+      <div class="discord-modal__icon">
+        <i class="fab fa-discord"></i>
+      </div>
+
+      <h2 class="discord-modal__title" id="discordModalTitle">Formulář odeslán! 🎉</h2>
+      <p class="discord-modal__text">
+        Díky za vyplnění. Připoj se na náš Discord, kde tě po úspěšném náboru
+        čekají všechny další informace.
+      </p>
+
+      <a href="https://discord.gg/42B6EdtyV8" target="_blank" rel="noopener noreferrer" class="discord-modal__btn">
+        <i class="fab fa-discord"></i> Připojit se na Discord
+      </a>
+
+      <div class="discord-modal__widget">
+        <iframe
+          src="https://discord.com/widget?id=1181627075921182883&theme=dark"
+          width="100%" height="400" allowtransparency="true" frameborder="0"
+          title="SplashSMP Discord"
+          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+      </div>
+    </div>
+  </div>
 
   <!-- ════════════════════════════════════════
        FOOTER
@@ -168,5 +202,48 @@
   </footer>
 
   <script src="main.js"></script>
+  <script>
+    (function () {
+      const iframe = document.getElementById('googleForm');
+      const loader = document.getElementById('formLoader');
+      const modal  = document.getElementById('discordModal');
+      if (!iframe || !modal) return;
+
+      let loadCount = 0;
+
+      // Google Form je cross-origin → nevidíme do něj. Jediný spolehlivý
+      // signál je opětovné načtení iframe: 1. load = zobrazení formuláře,
+      // 2. load = navigace po odeslání ("Odpověď byla zaznamenána").
+      iframe.addEventListener('load', () => {
+        loadCount++;
+
+        // Po prvním načtení schováme loader.
+        if (loader) loader.remove();
+
+        // Druhé (a další) načtení = odeslaný formulář → ukážeme modal.
+        if (loadCount >= 2) openModal();
+      });
+
+      function openModal() {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      // Zavření přes křížek, kliknutí na pozadí nebo Esc.
+      modal.querySelectorAll('[data-close]').forEach(el =>
+        el.addEventListener('click', closeModal)
+      );
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+      });
+    })();
+  </script>
 </body>
 </html>
