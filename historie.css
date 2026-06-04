@@ -163,10 +163,14 @@ input:checked + .slider::before { transform: translateX(24px); }
    Vykukuje zpoza karty, hlava nad horní hranou.
    ============================================================ */
 .ardaros-card {
-  overflow: visible;            /* aby hlava mohla přesahovat nad kartu */
-  /* Vlastní kompozitní vrstva – brání mizení karty při přepínači dat
-     (backdrop-filter se jinak po změně výšky nepřekreslí). */
-  transform: translateZ(0);
+  overflow: visible;            /* aby hlava mohla přesahovat vedle karty */
+  /* DŮLEŽITÉ: žádný backdrop-filter na této kartě.
+     Backdrop-filter se po změně výšky (přepínač dat) nepřekresloval
+     a karta mizela. Místo blur efektu používáme pevné tmavé pozadí,
+     které vypadá stejně jako ostatní skleněné karty, ale vždy se vykreslí. */
+  background: rgba(20, 20, 22, 0.92) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 .ardaros-egg {

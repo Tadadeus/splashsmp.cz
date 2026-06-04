@@ -29,21 +29,6 @@ if (hamburger) {
           date.classList.add('hide-date');
         }
       });
-
-      // Oprava: karta s backdrop-filter (Ardaros easter egg) se po změně
-      // výšky někdy nepřekreslí a zmizí. Nepatrný "nudge" transformu
-      // donutí kompozitor kartu překreslit – bez viditelné změny.
-      const eggCard = document.querySelector('.ardaros-card');
-      if (eggCard) {
-        const nudge = () => {
-          eggCard.style.transform = 'translateZ(0) scale(1.0001)';
-          requestAnimationFrame(() => {
-            eggCard.style.transform = 'translateZ(0)';
-          });
-        };
-        nudge();              // hned
-        setTimeout(nudge, 320); // po doběhnutí přechodu max-height (0.3s)
-      }
     });
   }
 
