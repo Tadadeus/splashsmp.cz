@@ -164,6 +164,9 @@ input:checked + .slider::before { transform: translateX(24px); }
    ============================================================ */
 .ardaros-card {
   overflow: visible;            /* aby hlava mohla přesahovat nad kartu */
+  /* Vlastní kompozitní vrstva – brání mizení karty při přepínači dat
+     (backdrop-filter se jinak po změně výšky nepřekreslí). */
+  transform: translateZ(0);
 }
 
 .ardaros-egg {
