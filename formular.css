@@ -1,0 +1,150 @@
+/* ============================================================
+   GLOBÁLNÍ POZADÍ (Z MAIN PAGE)
+   ============================================================ */
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+                    url('image (1).png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  margin: 0;
+  font-family: 'Rubik', sans-serif;
+}
+
+/* ============================================================
+   REZERVA PRO XP BAR & AKTIVNÍ NAVBAR
+   ============================================================ */
+.xp-bar-placeholder {
+  width: 100%;
+  height: 25px;
+  background: transparent;
+  position: relative;
+  z-index: 999;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050 !important;
+}
+
+.navbar__link.active {
+  color: var(--c-accent);
+}
+.navbar__link.active::after {
+  transform: translateX(-50%) scaleX(1);
+  background: var(--c-accent);
+}
+
+/* ============================================================
+   HERO SEKCE FORMULÁŘ
+   ============================================================ */
+.formular-hero {
+  padding-top: calc(var(--nav-h) + 60px);
+  padding-bottom: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.formular-title {
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  background: linear-gradient(120deg, #fff 30%, var(--c-accent-h) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.formular-subtitle {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  color: var(--c-text-muted);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   FORMULÁŘ SEKCE
+   ============================================================ */
+.formular-section {
+  padding: 20px 0 90px;
+}
+
+/* ------ Obálka pro vložený Google Form ------ */
+.formular-embed {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--c-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  min-height: 600px;
+}
+
+.formular-embed iframe {
+  display: block;
+  width: 100%;
+  height: 1400px;       /* dost vysoké, aby se formulář nescrolloval uvnitř */
+  border: 0;
+  background: transparent;
+}
+
+/* ------ Loader, dokud se iframe nenačte ------ */
+.formular-embed__loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--c-text-muted);
+  font-size: 1rem;
+  background: var(--c-bg-card);
+  z-index: 1;
+}
+
+.formular-embed__loader i {
+  font-size: 1.8rem;
+  color: var(--c-accent-h);
+}
+
+/* ------ Poznámka pod formulářem ------ */
+.formular-note {
+  max-width: 760px;
+  margin: 22px auto 0;
+  text-align: center;
+  color: var(--c-text-dim);
+  font-size: 0.92rem;
+}
+
+.formular-link {
+  color: var(--c-accent-h);
+  font-weight: 600;
+  transition: color var(--tr);
+}
+
+.formular-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* ============================================================
+   RESPONZIVITA
+   ============================================================ */
+@media (max-width: 600px) {
+  .formular-embed iframe {
+    height: 1550px;
+  }
+}

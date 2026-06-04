@@ -688,18 +688,19 @@ ul { list-style: none; }
   .footer__line { margin-inline: auto; }
 }
 
-/* Mobil */
-@media (max-width: 640px) {
-
-  /* Nav – skrýt desktop nav, zobrazit hamburger */
+/* Nav – přepnutí na hamburger dřív, aby se 5 odkazů nemačkalo */
+@media (max-width: 860px) {
   .navbar__nav  { display: none; }
   .hamburger    { display: flex; }
 
-  /* Na mobilu: logo vlevo, hamburger vpravo */
   .navbar__inner {
     justify-content: space-between;
     gap: 0;
   }
+}
+
+/* Mobil */
+@media (max-width: 640px) {
 
   /* Hero */
   .hero { min-height: 100svh; min-height: 100vh; }
