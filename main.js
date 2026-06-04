@@ -106,7 +106,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { passive: true });
 
+    // Nastav správný stav navbaru BEZ animace (jinak při načtení blikne).
+    navbar.classList.add('no-transition');
     updateNavbar();
+    // Vynuť reflow, aby se počáteční stav uložil bez přechodu,
+    // a teprve pak povol animaci pro skutečné scrollování.
+    void navbar.offsetWidth;
+    requestAnimationFrame(() => navbar.classList.remove('no-transition'));
   }
 
 
