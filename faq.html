@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ - SplashSMP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="faq.css" />
+</head>
+<body>
+    <header>
+        <nav>
+           <ul class="sidebar" id="sidebar">
+                <li onclick="toggleSidebar()"></li>
+                <li><a href="jaksenapojit.html">Připojení</a></li>
+                <li><a href="Historie.html">Historie</a></li>
+                <li><a href="cleni.html">Členi</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+            <ul>
+                <li><a href="index.html">SplashSMP</a></li>
+                <li class="hideOnMobile"><a href="jaksenapojit.html">Připojení</a></li>
+                <li class="hideOnMobile"><a href="Historie.html">Historie</a></li>
+                   <li class="hideOnMobile"><a href="cleni.html">Členi</a></li>
+                <li class="hideOnMobile"><a href="faq.html">FAQ</a></li>
+                <li class="menu-button" onclick="toggleSidebar()">
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <script>
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const hamburger = document.getElementById('hamburger');
+                sidebar.classList.toggle('sidebar-visible');
+                hamburger.classList.toggle('active');
+            }
+        </script>
+    </header>
+
+    <div class="faq-wrap">
+        <h1>Často kladené otázky</h1>
+        <h3> Dělá se postupně na novém webu, proto členi ani FAQ nejsou aktualizovány.
+             Do pár dní toto bude fixnuto.</h3>
+        <div class="faq-item">
+            <div class="faq-question">Co je to SplashSMP?</div>
+            <div class="faq-answer">
+                <div>Jsme soukromý Minecraft Roleplay SMP server, který i s pauzami běží od roku 2021. Více se o nás dozvíš zde: <a href="Historie.html">Historie</a></div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Jak server funguje, role atd.</div>
+            <div class="faq-answer">
+                <div>Server je na styl podobající se TrospySMP (zavádíme větší roleplay). Pluginy, custom svět a některé vylepšené struktury. Snažíme se mít server vyvážený.<br>
+                Vládne prezident a jeho vláda (zástupce, premiér, soudce apod). Prezident si určí strážce a členy armády. Řídí celý server a snaží se udržet mír, ovšem ne vždy se mu to daří. Je to nejvýše
+                postavený člověk na serveru. Řeší nákup pozemků na spawnu, smlouvy, popř. soudy, eventy a další věci v roleplayi v závislosti na okolnostech. Nevedeme každý den obrovské války, protože by server do 
+                měsíce umřel. Máme specifický a hodně velký lore, který poznáš pouze když se napojíš! Právě vykonávají hlavní funkce tito lidé: <br>
+                Prezident: Bratranec<br>
+                Zástupce Prezidenta: Zydan<br>
+                Premiér: TakyOndatra <br>
+                Soudce: Tadadeus, SindlSin, Adas25<br>
+                Strážci: Lupix, kimi<br>
+                Armáda: no-data <br>
+                Bankéř: Někdo říká, že bankéře vězní Ardaros ve sklepě...</div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Kdy dostanu IP, výběr Discord atd.?</div>
+            <div class="faq-answer">
+                <div>Po úspěšném náboru obdržíš pozvánku na privátní SplashSMP discord, kde najdeš veškeré další informace. </div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Buguje mi web, nebo nefunguje na mobilu</div>
+            <div class="faq-answer">
+                <div>Ano, náš webhosting je zdarma, proto se může občas bugovat. Zkus CTRL+F5 nebo změnit prohlížeč.</div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Verze, módy</div>
+            <div class="faq-answer">
+                <div>Server je na Minecraft Java edici 1.21.4. Zakázané módy jsou uvedeny na privátním discordu, kam se dostaneš po úspěšném náboru.</div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Jakým způsobem mohu podpořit server?</div>
+            <div class="faq-answer">
+                <div>Založ si ticket na public discordu serveru, kde se domluvíme.</div>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Kontakt</div>
+            <div class="faq-answer">
+                <div>Kontaktuje nás založením ticketu na našem public discord serveru.</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach((question) => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                const openItem = document.querySelector('.faq-item.active');
+                if (openItem && openItem !== item) {
+                    openItem.classList.remove('active');
+                }
+                
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

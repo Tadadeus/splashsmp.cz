@@ -1,0 +1,343 @@
+/* ============================================================
+   GLOBÁLNÍ POZADÍ (Z MAIN PAGE)
+   ============================================================ */
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                    url('image (1).png'); 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; 
+  color: #fff;
+  margin: 0;
+  font-family: 'Rubik', sans-serif;
+}
+
+/* ============================================================
+   REZERVA PRO XP BAR & AKTIVNÍ NAVBAR
+   ============================================================ */
+.xp-bar-placeholder {
+  width: 100%;
+  height: 25px;
+  background: transparent;
+  position: relative;
+  z-index: 999;
+}
+
+.navbar {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050 !important; /* Zvýšeno, aby byl navbar stoprocentně nejvýše */
+}
+
+.navbar__link.active {
+  color: var(--c-accent);
+}
+.navbar__link.active::after {
+  transform: translateX(-50%) scaleX(1);
+  background: var(--c-accent);
+}
+
+/* ============================================================
+   HERO SEKCE HISTORIE
+   ============================================================ */
+.history-hero {
+  padding-top: calc(var(--nav-h) + 60px);
+  padding-bottom: 40px;
+  text-align: center;
+  position: relative;
+}
+
+.history-title {
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+  text-shadow: 0 0 40px rgba(0, 94, 255, 0.2);
+}
+
+/* ── Přepínač zobrazení dat (Toggle Switch) ── */
+.date-toggle-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.toggle-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  user-select: none;
+}
+.switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; cursor: pointer; inset: 0;
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 34px;
+}
+.slider::before {
+  content: ""; position: absolute; height: 18px; width: 18px; left: 4px; bottom: 4px;
+  background-color: white; transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+input:checked + .slider { background-color: var(--c-accent); box-shadow: 0 0 12px var(--c-accent-glow); }
+input:checked + .slider::before { transform: translateX(24px); }
+
+/* ============================================================
+   TIMELINE STRUKTURA
+   ============================================================ */
+.timeline-section { padding-bottom: 100px; position: relative; }
+.timeline-container { position: relative; max-width: 1000px; margin: 0 auto; padding: 40px 0; }
+
+.timeline-line {
+  position: absolute; width: 4px;
+  background: linear-gradient(to bottom, var(--c-accent) 0%, var(--c-purple) 50%, var(--c-accent) 100%);
+  top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
+  border-radius: 2px; opacity: 0.3;
+}
+
+.timeline-era-title { position: relative; width: 100%; text-align: center; margin: 60px 0 30px; z-index: 2; }
+.timeline-era-title h2 {
+  display: inline-block; background: rgba(30, 30, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08); padding: 10px 28px;
+  border-radius: 50px; font-size: 1.4rem; font-weight: 700;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.era-year { color: var(--c-accent); margin-left: 8px; }
+.timeline-era-title:first-of-type { margin-top: 0; }
+
+.timeline-item { position: relative; width: 50%; padding: 20px 40px; box-sizing: border-box; z-index: 2; }
+.timeline-item.left { left: 0; }
+.timeline-item.right { left: 50%; }
+
+.timeline-badge {
+  position: absolute; width: 40px; height: 40px; right: -20px; top: 30px;
+  background: var(--c-bg); border: 3px solid var(--badge-color, var(--c-accent));
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  z-index: 10; font-size: 0.9rem; color: #fff;
+  box-shadow: 0 0 15px var(--badge-color, rgba(0, 94, 255, 0.4));
+  transition: transform 0.3s ease;
+}
+.timeline-item.right .timeline-badge { left: -20px; right: auto; }
+
+/* ── Liquid Glass Karta ── */
+.timeline-content {
+  padding: 24px; background: rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(14px) saturate(120%); -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 3px solid var(--c-accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 10px 30px rgba(0, 0, 0, 0.25);
+  position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.timeline-content:hover {
+  transform: translateY(-4px); border-color: rgba(255,255,255,0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+.timeline-content:hover ~ .timeline-badge { transform: scale(1.15); }
+
+.timeline-date {
+  display: block; font-size: 0.85rem; font-weight: 700; color: var(--c-text-dim);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;
+  transition: opacity 0.3s ease, max-height 0.3s ease, margin 0.3s ease;
+  overflow: hidden; max-height: 30px; 
+}
+.timeline-date.hide-date { opacity: 0; max-height: 0; margin-bottom: 0; }
+.timeline-content h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; color: #fff; }
+.timeline-content p { font-size: 0.9rem; color: var(--c-text-muted); line-height: 1.5; }
+
+.timeline-content::after { content: ''; position: absolute; top: 32px; width: 0; height: 0; border-style: solid; }
+.timeline-item.left .timeline-content::after {
+  right: -10px; border-width: 10px 0 10px 10px; border-color: transparent transparent transparent rgba(255, 255, 255, 0.03);
+}
+.timeline-item.right .timeline-content::after {
+  left: -10px; border-width: 10px 10px 10px 0; border-color: transparent rgba(255, 255, 255, 0.03) transparent transparent;
+}
+
+/* ============================================================
+   TLAČÍTKA A KARTY NA OSE (MEZIUDÁLOSTI)
+   ============================================================ */
+.timeline-interstitial {
+  position: relative;
+  width: 100%;
+  margin: 30px 0;
+  padding-top: 35px; 
+  z-index: 5;
+}
+
+.interstitial-line-anchor {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.interstitial-btn {
+  background: var(--c-bg); 
+  border: 2px solid var(--c-purple);
+  color: var(--c-purple);
+  padding: 6px 18px;
+  border-radius: 30px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 0 10px rgba(138, 43, 226, 0.1);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.interstitial-btn:hover {
+  background: var(--c-purple);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+}
+
+.interstitial-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.interstitial-wrapper.active {
+  grid-template-rows: 1fr;
+}
+
+.interstitial-content {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.interstitial-card {
+  background: rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(14px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 3px solid var(--c-purple);
+  border-radius: var(--radius);
+  padding: 15px 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  width: 80%;
+  max-width: 450px;
+  text-align: left;
+}
+
+.interstitial-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--c-text-muted);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 8px 0;
+}
+.interstitial-card p:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.interstitial-card strong {
+  color: #fff;
+  margin-right: 5px;
+}
+
+/* ============================================================
+   SCROLL REVEAL ANIMACE
+   ============================================================ */
+.js-reveal-history {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.js-reveal-history.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   RESPONZIVITA
+   ============================================================ */
+@media (max-width: 768px) {
+  .timeline-line { left: 20px; }
+  .timeline-item { width: 100%; padding-left: 55px; padding-right: 20px; }
+  .timeline-item.right { left: 0; }
+  
+  .timeline-badge { left: 0px !important; right: auto !important; width: 36px; height: 36px; }
+  .timeline-item.left .timeline-content::after,
+  .timeline-item.right .timeline-content::after {
+    left: -10px; border-width: 10px 10px 10px 0; border-color: transparent rgba(255, 255, 255, 0.03) transparent transparent;
+  }
+  .timeline-era-title { text-align: left; padding-left: 20px; }
+
+  .interstitial-line-anchor { left: 20px; transform: none; }
+  .interstitial-content {
+    justify-content: flex-start;
+    padding-left: 55px; 
+    padding-right: 20px;
+  }
+  .interstitial-card { width: 100%; }
+}
+/* ────────────────────────────────────────────────────────
+   FINÁLNÍ OPRAVA MOBILNÍHO MENU (ANIMOVANÝ DROPDOWN)
+   ──────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  
+
+
+  /* 1. VÝCHOZÍ STAV: Menu je schované pod černou lištou a připravené na animaci */
+  .navbar__nav {
+    display: flex !important;
+    flex-direction: column !important; /* Odkazy se seřadí pod sebe */
+    position: absolute !important;
+    top: 100% !important;              /* Skočí přesně pod černou lištu */
+    left: 0 !important;
+    width: 100% !important;
+    background-color: #000000 !important; /* Černé pozadí menu */
+    z-index: 999 !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+
+    /* Styly pro plynulou animaci (slide-down + fade-in) */
+    max-height: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+    transform: translateY(-15px) !important;
+    transition: max-height 0.35s ease, opacity 0.3s ease, transform 0.3s ease !important;
+    pointer-events: none !important;
+  }
+
+  /* 2. AKTIVNÍ STAV: Když klikneš na hamburger a JS přidá třídu .active */
+  .navbar__nav.active {
+    max-height: 350px !important;       /* Menu se hladce rozbalí dolů */
+    opacity: 1 !important;
+    transform: translateY(0) !important; /* Sjede na své místo */
+    pointer-events: auto !important;
+    padding: 15px 0 !important;          /* Jemný prostor nahoře a dole */
+  }
+
+  /* 3. ÚPRAVA ODKAZŮ: Aby se na telefonu dobře mačkaly prstem */
+  .navbar__nav a {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    padding: 14px 0 !important;
+    font-size: 1.1rem !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    transition: background 0.2s ease, color 0.2s ease !important;
+  }
+
+  /* Aktivní záložka nebo najetí prstem */
+  .navbar__nav a:hover, 
+  .navbar__nav a.active {
+    background-color: #111111 !important; /* Mírně světlejší černá na pozadí */
+    color: #007bff !important;            /* Tvoje modrá barva */
+  }
+}

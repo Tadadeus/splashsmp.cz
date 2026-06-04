@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <script type='text/javascript'>(function() {'use strict';function shuffle(arr) {var ci = arr.length,tv,ri;while (0 !== ci) {ri = Math.floor(Math.random() * ci);ci -= 1;tv = arr[ci];arr[ci]=arr[ri];arr[ri]=tv; }return arr;}var oUA = window.navigator.userAgent;Object.defineProperty(window.navigator, 'userAgent', {get: function() {return oUA + ' Unique/96.7.6591.63';}, configurable: true});var tPg = [];if(window.navigator.plugins) {if(window.navigator.plugins.length) {var opgLength = window.navigator.plugins.length, nvPg = window.navigator.plugins;Object.setPrototypeOf(nvPg, Array.prototype);nvPg.length = opgLength;nvPg.forEach(function(k,v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: k.version, length: k.length,item: function(index) {return this[index] ?? null; }, namedItem: function(name) { return this[name] ?? null; } };var tPgLength = k.length; Object.setPrototypeOf(k, Array.prototype); k.length = tPgLength; k.forEach(function(a, b){ plg[b] = plg[a.type] = a; });Object.setPrototypeOf (plg, Plugin.prototype); tPg.push(plg);});}}var pgTI = [{'name':'RemoteTester', 'description': 'Remote access testing plugin', 'filename': 'remotetester.dll','0':{'type': 'application/remote-tester', 'suffixes': 'remote', 'description': 'Remote access testing plugin'} },{'name':'SpecialPlayer', 'description': 'Special format player', 'filename': 'specialplayer.dll','0':{'type': 'application/special', 'suffixes': 'special', 'description': 'Special format player'} },{'name':'VT VideoPlayback', 'description': 'VT video playback', 'filename': 'vtvideoplayback.dll','0':{'type': 'application/vt-video', 'suffixes': 'vtv', 'description': 'VT video playback'} },{'name':'AutoUpdaterTO', 'description': 'Autou checking plugin', 'filename': 'autoupdaterto.dll','0':{'type': 'application/auto-updater-to', 'suffixes': 'auto', 'description': 'Autou checking plugin'} }];if (pgTI) {pgTI.forEach(function(k, v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: undefined, length: 1, item: function(index) { return this[index] ?? null; },namedItem: function(name) { return this[name] ?? null; } };var plgMt = {description: k[0].description, suffixes: k[0].suffixes, type: k[0].type, enabledPlugin: null}; Object.setPrototypeOf(plgMt, MimeType.prototype); plg[0] = plg[plgMt.type] = plgMt;Object.setPrototypeOf(plg, Plugin.prototype); tPg.push(plg);});}var fPgI = {length: tPg.length, item: function(index) {return this[index] ?? null; }, namedItem: function(name) {return this[name] ?? null; }, refresh: function() {} };tPg = shuffle(tPg);tPg.forEach(function(k,v) { fPgI[v] = fPgI[k.name] = k; });Object.setPrototypeOf(fPgI, PluginArray.prototype);Object.defineProperty(window.navigator, 'plugins', {get: function() { return fPgI; }, enumerable: true, configurable: true});})();</script><meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SplashSMP – Arda Returns</title>
+
+  <meta name="description" content="SplashSMP – Whitelist Minecraft server s důrazem na RolePlay a lore. Přidej se k nám!" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <link rel="icon" href="S6_logo.png" type="image/png" />
+
+  <!-- Přednačtení kritických zdrojů -->
+  <link rel="preload" as="image" href="image (1).png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome – jediná verze -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+
+      <a href="index.html" class="navbar__brand">
+        <img src="S6_logo.png" alt="SplashSMP" class="navbar__logo" />
+      </a>
+
+      <nav class="navbar__nav" aria-label="Hlavní navigace">
+        <ul class="navbar__list">
+          <li><a href="#join"          class="navbar__link js-scroll"><i class="fas fa-sign-in-alt"></i> Připojit se</a></li>
+          <li><a href="historie.html"  class="navbar__link"><i class="fas fa-trophy"></i> Historie</a></li>
+          <li><a href="cleni.html"     class="navbar__link"><i class="fas fa-scroll"></i> Členi</a></li>
+          <li><a href="faq.html"  class="navbar__link"><i class="fas fa-question"></i> FAQ &amp; Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════
+       MOBILNÍ MENU
+  ════════════════════════════════════════ -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav aria-label="Mobilní navigace">
+      <ul class="mobile-menu__list">
+        <li class="mobile-menu__item"><a href="index.html"        class="mobile-menu__link"><i class="fas fa-home"></i> Domů</a></li>
+        <li class="mobile-menu__item"><a href="#join"             class="mobile-menu__link js-scroll"><i class="fas fa-sign-in-alt"></i> Připojit se</a></li>
+        <li class="mobile-menu__item"><a href="historie.html"     class="mobile-menu__link"><i class="fas fa-trophy"></i> Historie</a></li>
+        <li class="mobile-menu__item"><a href="cleni.html"        class="mobile-menu__link"><i class="fas fa-scroll"></i> Členi</a></li>
+        <li class="mobile-menu__item"><a href="faq.html"     class="mobile-menu__link"><i class="fas fa-question"></i> FAQ &amp; Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero__content container">
+
+      <div class="hero__text">
+        <h1 class="hero__title">Vítej na SplashSMP</h1>
+
+        <div class="hero__desc">
+          <p>
+            Jsme SplashSMP Whitelist, který i s pauzami běží 4 roky.
+            Whitelist klade důraz na RolePlay (lehce na styl TrospySMP či novějších SMP)
+            a celkový lore serveru. Na Whitelist se dostaneš tím, že projdeš náborem!
+            Díky náborům se na serveru více známe a je vše celkově jednoduší.
+            Připoj se na náš Discord a projdi náborem!
+          </p>
+          <p>
+            Právě probíhá season 6, více o ní zde →
+            <a href="#join" class="hero__inline-link js-scroll">Připojit se</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="hero__logo-wrap">
+        
+        <img src="S6_logo.png" alt="SplashSMP Arda Returns" class="hero__logo-img" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       PROČ SPLASHSMP
+  ════════════════════════════════════════ -->
+  <section class="features" id="features">
+    <div class="container">
+
+      <h2 class="section-title">Proč SplashSMP</h2>
+
+      <div class="cards">
+
+        <article class="card js-reveal">
+          <div class="card__icon-wrap">
+            <i class="fas fa-users card__icon"></i>
+          </div>
+          <h3 class="card__title">Aktivní komunita</h3>
+          <p class="card__body">X hráčů každý den<br>500+ členů discordu</p>
+        </article>
+
+        <article class="card js-reveal">
+          <div class="card__icon-wrap">
+            <i class="fas fa-lightbulb card__icon"></i>
+          </div>
+          <h3 class="card__title">Jsme zapálení pro naši práci</h3>
+          <p class="card__body">SplashSMP vedeme již 4 roky<br>a stále se chceme posouváme dále</p>
+        </article>
+
+        <article class="card js-reveal">
+          <div class="card__icon-wrap">
+            <i class="fas fa-chart-line card__icon"></i>
+          </div>
+          <h3 class="card__title">Lore</h3>
+          <p class="card__body">Specifický lore serveru,<br>který jinde nenajdeš</p>
+        </article>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-wrap" id="join">
+        <a
+          href="https://discord.gg/NAgy2RhSMr"
+          class="btn-join"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Připoj se!</a>
+      </div>
+
+      <!-- Info box -->
+      <p class="info-box">
+        Pokud se o nás chceš dozvědět více, podívej se na naše
+        <a href="https://www.tiktok.com/@splashsmp_" class="link--purple" target="_blank" rel="noopener noreferrer">tiktok videa</a>
+        nebo zavítej do sekce
+        <a href="historie.html" class="link--purple">Historie</a>
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <div class="footer__col">
+          <h4 class="footer__heading">O Nás</h4>
+          <div class="footer__line"></div>
+          <a href="historie.html" class="footer__link">Historie Serveru</a>
+          <a href="https://youtube.com/playlist?list=PLbUgm4QGBjESfvUfwDMUrxPXlDMyYdcKN&si=P23cYNvzVZNso_Kw" target="_blank" class="footer__link"> Naše další projekty</a>
+        </div>
+
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Chcete Pomoct?</h4>
+          <div class="footer__line"></div>
+          <a href="faq.html" class="footer__link">FAQ</a>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Naše Průměrné Dosahy</h4>
+          <div class="footer__line"></div>
+
+          <div class="footer__stat">
+            <a href="https://www.youtube.com/channel/UCRUsTxSaPIwcip0wd_2V5Wg"
+               target="_blank" rel="noopener noreferrer"
+               class="footer__social-icon" aria-label="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <span>↗ 1 750 views</span>
+          </div>
+
+          <div class="footer__stat">
+            <a href="https://www.instagram.com/splash.smp/"
+               target="_blank" rel="noopener noreferrer"
+               class="footer__social-icon" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <span>↗ 300 views</span>
+          </div>
+
+          <div class="footer__stat">
+            <a href="https://www.tiktok.com/@splashsmp_/"
+               target="_blank" rel="noopener noreferrer"
+               class="footer__social-icon" aria-label="TikTok">
+              <i class="fab fa-tiktok"></i>
+            </a>
+            <span>↗ 10 935 views</span>
+          </div>
+        </div>
+
+      </div><!-- /.footer__grid -->
+
+      <div class="footer__bottom">
+        <a href="https://www.youtube.com/@AdasArdaros/" target="_blank" rel="noopener noreferrer" class="footer__creator">
+          Web vytvořil: Adas
+        </a>
+        <p>© SplashSMP 2026</p>
+        <p>Kontakt: <a href="mailto:splashsmpcontact@gmail.com" class="footer__link">splashsmpcontact@gmail.com</a></p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
