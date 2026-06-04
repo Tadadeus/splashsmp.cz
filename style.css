@@ -99,7 +99,7 @@ ul { list-style: none; }
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
     0 4px 24px rgba(0, 0, 0, 0.22);
 
-  transition: background var(--tr), box-shadow var(--tr), border-color var(--tr);
+  transition: background-color var(--tr), box-shadow var(--tr), border-color var(--tr);
 }
 
 /* Po odscrollování – trochu neprůhledněji, glass zachován */
@@ -126,8 +126,7 @@ ul { list-style: none; }
 
 .navbar__logo  { height: 46px; width: auto; }
 
-/* Desktop nav – bez margin-left: auto, zůstane u loga */
-.navbar__nav   { /* margin-left: auto odstraněn – nav je teď hned vedle loga */ }
+/* Desktop nav – bez margin-left: auto, nav je teď hned vedle loga */
 
 .navbar__list  {
   display: flex;
