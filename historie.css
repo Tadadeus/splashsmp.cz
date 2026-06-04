@@ -176,7 +176,7 @@ input:checked + .slider::before { transform: translateX(24px); }
   opacity: 0.0;                /* lehce průhledný */
   pointer-events: none;
   filter: drop-shadow(0 0 14px rgba(229, 57, 53, 0.45)) saturate(0.85);
-  transition: opacity 0.4s ease;
+  transition: opacity 0.55s ease;
   animation: ardarosFloat 5s ease-in-out infinite;
 }
 
