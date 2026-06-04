@@ -86,10 +86,17 @@
         <iframe
           id="googleForm"
           src="https://docs.google.com/forms/d/e/1FAIpQLSdXhMmzLNQCbgksAZKZNvnEUsF_oI7xmcpkxiM_dlltn0WOOA/viewform?embedded=true"
-          title="Přihlašovací formulář SplashSMP"
-          loading="lazy">
+          title="Přihlašovací formulář SplashSMP">
           Načítám…
         </iframe>
+      </div>
+
+      <!-- Záložní tlačítko: spustí modal ručně (kdyby auto-detekce selhala) -->
+      <div class="formular-done">
+        <p class="formular-done__text">Po odeslání formuláře se objeví pozvánka na Discord. Nestalo se tak?</p>
+        <button type="button" class="formular-done__btn" id="formDoneBtn">
+          <i class="fab fa-discord"></i> Odeslal/a jsem formulář
+        </button>
       </div>
 
       <p class="formular-note">
@@ -204,27 +211,43 @@
   <script src="main.js"></script>
   <script>
     (function () {
-      const iframe = document.getElementById('googleForm');
-      const loader = document.getElementById('formLoader');
-      const modal  = document.getElementById('discordModal');
+      const iframe  = document.getElementById('googleForm');
+      const loader  = document.getElementById('formLoader');
+      const modal   = document.getElementById('discordModal');
+      const doneBtn = document.getElementById('formDoneBtn');
       if (!iframe || !modal) return;
 
-      let loadCount = 0;
+      let formReadyAt = 0;   // čas, kdy se formulář poprvé zobrazil
+      let shown       = false;
 
-      // Google Form je cross-origin → nevidíme do něj. Jediný spolehlivý
-      // signál je opětovné načtení iframe: 1. load = zobrazení formuláře,
-      // 2. load = navigace po odeslání ("Odpověď byla zaznamenána").
+      // ── Auto-detekce odeslání ──
+      // Google Form je cross-origin → do iframe nevidíme. Můžeme se ale
+      // spolehnout na to, že KAŽDÁ navigace uvnitř (i odeslání) vyvolá
+      // nový 'load'. První 'load' = zobrazení formuláře. Jakýkoli další
+      // 'load', který přijde dostatečně dlouho po prvním (uživatel mezitím
+      // vyplňoval), bereme jako odeslání → ukážeme pozvánku.
       iframe.addEventListener('load', () => {
-        loadCount++;
-
-        // Po prvním načtení schováme loader.
         if (loader) loader.remove();
 
-        // Druhé (a další) načtení = odeslaný formulář → ukážeme modal.
-        if (loadCount >= 2) openModal();
+        if (formReadyAt === 0) {
+          // první načtení = formulář je připraven
+          formReadyAt = Date.now();
+          return;
+        }
+
+        // další načtení po > 1,5 s = velmi pravděpodobně odeslání
+        if (Date.now() - formReadyAt > 1500) {
+          openModal();
+        }
       });
 
+      // ── Ruční fallback ──
+      // Kdyby auto-detekce v některém prohlížeči selhala, uživatel klikne sám.
+      if (doneBtn) doneBtn.addEventListener('click', openModal);
+
       function openModal() {
+        if (shown) return;
+        shown = true;
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
@@ -234,9 +257,9 @@
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        shown = false;   // umožní zobrazit znovu (např. přes tlačítko)
       }
 
-      // Zavření přes křížek, kliknutí na pozadí nebo Esc.
       modal.querySelectorAll('[data-close]').forEach(el =>
         el.addEventListener('click', closeModal)
       );

@@ -120,6 +120,41 @@ body {
   color: var(--c-accent-h);
 }
 
+/* ------ Záložní "Odeslal jsem formulář" tlačítko ------ */
+.formular-done {
+  max-width: 760px;
+  margin: 26px auto 0;
+  text-align: center;
+}
+
+.formular-done__text {
+  color: var(--c-text-dim);
+  font-size: 0.92rem;
+  margin-bottom: 12px;
+}
+
+.formular-done__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 26px;
+  background: #5865F2;
+  color: #fff;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4);
+  transition: background var(--tr), transform var(--tr), box-shadow var(--tr);
+}
+.formular-done__btn:hover {
+  background: #4752c4;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(88, 101, 242, 0.55);
+}
+
 /* ------ Poznámka pod formulářem ------ */
 .formular-note {
   max-width: 760px;
