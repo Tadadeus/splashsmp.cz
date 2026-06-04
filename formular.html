@@ -217,28 +217,37 @@
       const doneBtn = document.getElementById('formDoneBtn');
       if (!iframe || !modal) return;
 
-      let formReadyAt = 0;   // čas, kdy se formulář poprvé zobrazil
-      let shown       = false;
+      // Počet stránek formuláře. Formulář má 2 strany:
+      //   1. navigace = klik "Další" (přechod na 2. stranu)
+      //   2. navigace = klik "Odeslat"
+      // Takže odeslání = SUBMIT_NAV-tá navigace uvnitř iframe.
+      // (Kdybys přidal/ubral stranu, změň jen toto číslo.)
+      const SUBMIT_NAV = 2;
+
+      let navCount  = 0;     // počet navigací uvnitř iframe (po prvním načtení)
+      let lastNavAt = 0;     // čas poslední navigace (ochrana proti dvojím loadům)
+      let firstLoad = true;
+      let shown     = false;
 
       // ── Auto-detekce odeslání ──
-      // Google Form je cross-origin → do iframe nevidíme. Můžeme se ale
-      // spolehnout na to, že KAŽDÁ navigace uvnitř (i odeslání) vyvolá
-      // nový 'load'. První 'load' = zobrazení formuláře. Jakýkoli další
-      // 'load', který přijde dostatečně dlouho po prvním (uživatel mezitím
-      // vyplňoval), bereme jako odeslání → ukážeme pozvánku.
+      // Google Form je cross-origin → do iframe nevidíme, ale každá navigace
+      // (Další i Odeslat) spustí nový 'load'. Spočítáme je a popup ukážeme,
+      // až proběhne navigace odpovídající kliknutí na "Odeslat".
       iframe.addEventListener('load', () => {
         if (loader) loader.remove();
 
-        if (formReadyAt === 0) {
-          // první načtení = formulář je připraven
-          formReadyAt = Date.now();
+        if (firstLoad) {
+          firstLoad = false;       // úvodní zobrazení formuláře – nepočítá se
           return;
         }
 
-        // další načtení po > 1,5 s = velmi pravděpodobně odeslání
-        if (Date.now() - formReadyAt > 1500) {
-          openModal();
-        }
+        // Ignoruj rychlé dvojité 'load' (< 600 ms) – není to reálná navigace.
+        const now = Date.now();
+        if (now - lastNavAt < 600) return;
+        lastNavAt = now;
+
+        navCount++;
+        if (navCount >= SUBMIT_NAV) openModal();
       });
 
       // ── Ruční fallback ──
