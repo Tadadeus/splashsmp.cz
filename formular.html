@@ -247,8 +247,23 @@
         lastNavAt = now;
 
         navCount++;
-        if (navCount >= SUBMIT_NAV) openModal();
+
+        if (navCount >= SUBMIT_NAV) {
+          openModal();
+        } else {
+          // Přechod na další stránku formuláře → odscrollovat nahoru,
+          // aby uživatel rovnou viděl začátek nové stránky.
+          scrollFormIntoView();
+        }
       });
+
+      function scrollFormIntoView() {
+        const box = document.querySelector('.formular-embed');
+        if (box) {
+          box.scrollTop = 0;   // reset scrollu uvnitř boxu
+          box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
 
       // ── Ruční fallback ──
       // Kdyby auto-detekce v některém prohlížeči selhala, uživatel klikne sám.

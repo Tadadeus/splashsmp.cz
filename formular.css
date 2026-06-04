@@ -89,13 +89,17 @@ body {
   border-radius: var(--radius);
   box-shadow: 0 10px 34px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  min-height: 600px;
+  /* Pevná rozumná výška – formulář se scrolluje UVNITŘ boxu, takže box
+     nezabírá celou stránku a po přepnutí stránky netrčí prázdné místo. */
+  height: 78vh;
+  min-height: 520px;
+  max-height: 860px;
 }
 
 .formular-embed iframe {
   display: block;
   width: 100%;
-  height: 1400px;       /* dost vysoké, aby se formulář nescrolloval uvnitř */
+  height: 100%;         /* vyplní box; vlastní obsah formuláře se scrolluje */
   border: 0;
   background: transparent;
 }
@@ -307,7 +311,9 @@ body {
    RESPONZIVITA
    ============================================================ */
 @media (max-width: 600px) {
-  .formular-embed iframe {
-    height: 1550px;
+  /* Na mobilu dáme boxu víc výšky, ať se vejde víc otázek najednou. */
+  .formular-embed {
+    height: 82vh;
+    max-height: none;
   }
 }
