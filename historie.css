@@ -168,31 +168,31 @@ input:checked + .slider::before { transform: translateX(24px); }
 
 .ardaros-egg {
   position: absolute;
-  right: 18px;                  /* schovaný v pravém rohu karty */
-  bottom: 0;
-  width: 130px;
+  right: calc(100% + 16px);     /* hned vlevo vedle karty */
+  top: 50%;
+  width: 120px;
   height: auto;
-  z-index: -1;                  /* za obsahem i pozadím karty */
-  opacity: 0.38;                /* lehce průhledný */
+  z-index: 5;
+  opacity: 0.55;                /* lehce průhledný */
   pointer-events: none;
   filter: drop-shadow(0 0 14px rgba(229, 57, 53, 0.45)) saturate(0.85);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.4s ease;
   animation: ardarosFloat 5s ease-in-out infinite;
 }
 
-/* Při najetí na kartu se Ardaros lehce odhalí a "nakoukne" víc */
+/* Při najetí na kartu se Ardaros lehce odhalí */
 .ardaros-card:hover .ardaros-egg {
-  opacity: 0.6;
-  transform: translateY(-4px);
+  opacity: 0.8;
 }
 
 @keyframes ardarosFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
+  0%, 100% { transform: translateY(-50%); }
+  50%      { transform: translateY(calc(-50% - 8px)); }
 }
 
 @media (max-width: 768px) {
-  .ardaros-egg { width: 100px; right: 10px; }
+  /* Na mobilu je karta přes celou šířku → schovat, aby nepřekážel */
+  .ardaros-egg { display: none; }
 }
 
 .timeline-content::after { content: ''; position: absolute; top: 32px; width: 0; height: 0; border-style: solid; }
