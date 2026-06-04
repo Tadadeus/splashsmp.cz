@@ -1,122 +1,264 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FAQ - SplashSMP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="faq.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>FAQ &amp; Kontakt – SplashSMP</title>
+  <meta name="description" content="Často kladené otázky o SplashSMP – jak server funguje, jak se připojit a jak nás kontaktovat." />
+  <link rel="icon" href="S6_logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="faq.css" />
 </head>
 <body>
-    <header>
-        <nav>
-           <ul class="sidebar" id="sidebar">
-                <li onclick="toggleSidebar()"></li>
-                <li><a href="https://www.splashsmp.cz/index.html#join">Připojení</a></li>
-                <li><a href="https://www.splashsmp.cz/historie.html">Historie</a></li>
-                <li><a href="cleni.html">Členi</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-            </ul>
-            <ul>
-                <li><a href="index.html">SplashSMP</a></li>
-                <li class="hideOnMobile"><a href="https://www.splashsmp.cz/index.html#join">Připojení</a></li>
-                <li class="hideOnMobile"><a href="https://www.splashsmp.cz/historie.html">Historie</a></li>
-                   <li class="hideOnMobile"><a href="cleni.html">Členi</a></li>
-                <li class="hideOnMobile"><a href="faq.html">FAQ</a></li>
-                <li class="menu-button" onclick="toggleSidebar()">
-                    <div class="hamburger" id="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-        <script>
-            function toggleSidebar() {
-                const sidebar = document.getElementById('sidebar');
-                const hamburger = document.getElementById('hamburger');
-                sidebar.classList.toggle('sidebar-visible');
-                hamburger.classList.toggle('active');
-            }
-        </script>
-    </header>
 
-    <div class="faq-wrap">
-        <h1>Často kladené otázky</h1>
-        <h3> Dělá se postupně na novém webu, proto členi ani FAQ nejsou aktualizovány.
-             Do pár dní toto bude fixnuto.</h3>
-        <div class="faq-item">
-            <div class="faq-question">Co je to SplashSMP?</div>
-            <div class="faq-answer">
-                <div>Jsme soukromý Minecraft Roleplay SMP server, který i s pauzami běží od roku 2021. Více se o nás dozvíš zde: <a href="Historie.html">Historie</a></div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Jak server funguje, role atd.</div>
-            <div class="faq-answer">
-                <div>Server je na styl podobající se TrospySMP (zavádíme větší roleplay). Pluginy, custom svět a některé vylepšené struktury. Snažíme se mít server vyvážený.<br>
-                Vládne prezident a jeho vláda (zástupce, premiér, soudce apod). Prezident si určí strážce a členy armády. Řídí celý server a snaží se udržet mír, ovšem ne vždy se mu to daří. Je to nejvýše
-                postavený člověk na serveru. Řeší nákup pozemků na spawnu, smlouvy, popř. soudy, eventy a další věci v roleplayi v závislosti na okolnostech. Nevedeme každý den obrovské války, protože by server do 
-                měsíce umřel. Máme specifický a hodně velký lore, který poznáš pouze když se napojíš! Právě vykonávají hlavní funkce tito lidé: <br>
-                Prezident: Není<br>
-                Zástupce Prezidenta: Není<br>
-                Premiér: Babiš<br>
-                Soudce: Tadadeus<br>
-                Strážci: Není<br>
-                Armáda: Není <br>
-                Bankéř: Někdo říká, že bankéře vězní Ardaros ve sklepě...</div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Kdy dostanu IP, výběr Discord atd.?</div>
-            <div class="faq-answer">
-                <div>Po úspěšném náboru obdržíš pozvánku na privátní SplashSMP discord, kde najdeš veškeré další informace. </div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Buguje mi web, nebo nefunguje na mobilu</div>
-            <div class="faq-answer">
-                <div>Ano, náš webhosting je zdarma, proto se může občas bugovat. Zkus CTRL+F5 nebo změnit prohlížeč.</div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Verze, módy</div>
-            <div class="faq-answer">
-                <div>Server je na Minecraft Java edici 1.21.11. Zakázané módy jsou uvedeny na privátním discordu, kam se dostaneš po úspěšném náboru.</div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Jakým způsobem mohu podpořit server?</div>
-            <div class="faq-answer">
-                <div>Založ si ticket na public discordu serveru, kde se domluvíme.</div>
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Kontakt</div>
-            <div class="faq-answer">
-                <div>Kontaktuje nás založením ticketu na našem public discord serveru.</div>
-            </div>
-        </div>
+  <div class="xp-bar-placeholder"></div>
+
+  <!-- ════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+
+      <a href="index.html" class="navbar__brand">
+        <img src="S6_logo.png" alt="SplashSMP" class="navbar__logo" />
+      </a>
+
+      <nav class="navbar__nav" aria-label="Hlavní navigace">
+        <ul class="navbar__list">
+          <li><a href="index.html#join" class="navbar__link"><i class="fas fa-sign-in-alt"></i> Připojit se</a></li>
+          <li><a href="historie.html" class="navbar__link"><i class="fas fa-trophy"></i> Historie</a></li>
+          <li><a href="cleni.html" class="navbar__link"><i class="fas fa-scroll"></i> Členi</a></li>
+          <li><a href="faq.html" class="navbar__link active"><i class="fas fa-question"></i> FAQ &amp; Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+      </button>
+
     </div>
-    
-    <script>
-        const faqQuestions = document.querySelectorAll('.faq-question');
+  </header>
 
-        faqQuestions.forEach((question) => {
-            question.addEventListener('click', () => {
-                const item = question.parentElement;
-                const isActive = item.classList.contains('active');
-                
-                const openItem = document.querySelector('.faq-item.active');
-                if (openItem && openItem !== item) {
-                    openItem.classList.remove('active');
-                }
-                
-                item.classList.toggle('active');
-            });
+  <!-- ════════════════════════════════════════
+       MOBILNÍ MENU
+  ════════════════════════════════════════ -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav aria-label="Mobilní navigace">
+      <ul class="mobile-menu__list">
+        <li class="mobile-menu__item"><a href="index.html" class="mobile-menu__link"><i class="fas fa-home"></i> Domů</a></li>
+        <li class="mobile-menu__item"><a href="index.html#join" class="mobile-menu__link"><i class="fas fa-sign-in-alt"></i> Připojit se</a></li>
+        <li class="mobile-menu__item"><a href="historie.html" class="mobile-menu__link"><i class="fas fa-trophy"></i> Historie</a></li>
+        <li class="mobile-menu__item"><a href="cleni.html" class="mobile-menu__link"><i class="fas fa-scroll"></i> Členi</a></li>
+        <li class="mobile-menu__item"><a href="faq.html" class="mobile-menu__link active"><i class="fas fa-question"></i> FAQ &amp; Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════ -->
+  <section class="faq-hero">
+    <div class="container faq-hero__inner">
+      <h1 class="faq-title">Často kladené otázky</h1>
+      <p class="faq-subtitle">
+        Dělá se postupně na novém webu, proto členi ani FAQ nejsou aktualizovány.
+        Do pár dní toto bude fixnuto.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       FAQ SEKCE
+  ════════════════════════════════════════ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Co je to SplashSMP?</span>
+            <i class="fas fa-chevron-down faq-chevron"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Jsme soukromý Minecraft Roleplay SMP server, který i s pauzami běží od roku 2021.
+              Více se o nás dozvíš zde: <a href="historie.html" class="faq-link">Historie</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Jak server funguje, role atd.</span>
+            <i class="fas fa-chevron-down faq-chevron"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Server je na styl podobající se TrospySMP (zavádíme větší roleplay). Pluginy, custom svět a některé vylepšené struktury. Snažíme se mít server vyvážený.<br>
+              Vládne prezident a jeho vláda (zástupce, premiér, soudce apod). Prezident si určí strážce a členy armády. Řídí celý server a snaží se udržet mír, ovšem ne vždy se mu to daří. Je to nejvýše
+              postavený člověk na serveru. Řeší nákup pozemků na spawnu, smlouvy, popř. soudy, eventy a další věci v roleplayi v závislosti na okolnostech. Nevedeme každý den obrovské války, protože by server do
+              měsíce umřel. Máme specifický a hodně velký lore, který poznáš pouze když se napojíš!<br><br>
+              Právě vykonávají hlavní funkce tito lidé:<br>
+              Prezident: Není<br>
+              Zástupce Prezidenta: Není<br>
+              Premiér: Babiš<br>
+              Soudce: Tadadeus<br>
+              Strážci: Není<br>
+              Armáda: Není<br>
+              Bankéř: Někdo říká, že bankéře vězní Ardaros ve sklepě...
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Kdy dostanu IP, výběr Discord atd.?</span>
+            <i class="fas fa-chevron-down faq-chevron"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Po úspěšném náboru obdržíš pozvánku na privátní SplashSMP discord, kde najdeš veškeré další informace.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Buguje mi web, nebo nefunguje na mobilu</span>
+            <i class="fas fa-chevron-down faq-chevron"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Ano, náš webhosting je zdarma, proto se může občas bugovat. Zkus CTRL+F5 nebo změnit prohlížeč.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Verze, módy</span>
+            <i class="fas fa-chevron-down faq-chevron"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Server je na Minecraft Java edici 1.21.11. Zakázané módy jsou uvedeny na privátním discordu, kam se dostaneš po úspěšném náboru.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Jakým způsobem mohu podpořit server?</span>
+            <i class="fas fa-chevron-down faq-chevron"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Založ si ticket na public discordu serveru, kde se domluvíme.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Kontakt</span>
+            <i class="fas fa-chevron-down faq-chevron"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Kontaktuj nás založením ticketu na našem public discord serveru, nebo na e-mailu
+              <a href="mailto:splashsmpcontact@gmail.com" class="faq-link">splashsmpcontact@gmail.com</a>.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <div class="footer__col">
+          <h4 class="footer__heading">O Nás</h4>
+          <div class="footer__line"></div>
+          <a href="historie.html" class="footer__link">Historie Serveru</a>
+          <a href="https://youtube.com/playlist?list=PLbUgm4QGBjESfvUfwDMUrxPXlDMyYdcKN&si=P23cYNvzVZNso_Kw" target="_blank" class="footer__link"> Naše další projekty</a>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Chcete Pomoct?</h4>
+          <div class="footer__line"></div>
+          <a href="faq.html" class="footer__link">FAQ &amp; Kontakt</a>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Naše Průměrné Dosahy</h4>
+          <div class="footer__line"></div>
+
+          <div class="footer__stat">
+            <a href="https://www.youtube.com/channel/UCRUsTxSaPIwcip0wd_2V5Wg"
+               target="_blank" rel="noopener noreferrer"
+               class="footer__social-icon" aria-label="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <span>↗ 1 750 views</span>
+          </div>
+
+          <div class="footer__stat">
+            <a href="https://www.instagram.com/splash.smp/"
+               target="_blank" rel="noopener noreferrer"
+               class="footer__social-icon" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <span>↗ 300 views</span>
+          </div>
+
+          <div class="footer__stat">
+            <a href="https://www.tiktok.com/@splashsmp_/"
+               target="_blank" rel="noopener noreferrer"
+               class="footer__social-icon" aria-label="TikTok">
+              <i class="fab fa-tiktok"></i>
+            </a>
+            <span>↗ 10 935 views</span>
+          </div>
+        </div>
+
+      </div><!-- /.footer__grid -->
+
+      <div class="footer__bottom">
+        <a href="https://www.youtube.com/@AdasArdaros/" target="_blank" rel="noopener noreferrer" class="footer__creator">
+          Web vytvořil: Adas
+        </a>
+        <p>© SplashSMP 2026</p>
+        <p>Kontakt: <a href="mailto:splashsmpcontact@gmail.com" class="footer__link">splashsmpcontact@gmail.com</a></p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    document.querySelectorAll('.faq-question').forEach((question) => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const isActive = item.classList.contains('active');
+
+        document.querySelectorAll('.faq-item.active').forEach((open) => {
+          if (open !== item) open.classList.remove('active');
         });
-    </script>
+
+        item.classList.toggle('active', !isActive);
+      });
+    });
+  </script>
 </body>
 </html>
