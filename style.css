@@ -338,6 +338,11 @@ ul { list-style: none; }
   line-height: 1.15;
   margin-bottom: 22px;
   letter-spacing: -0.01em;
+  text-align: center;
+  background: linear-gradient(120deg, #fff 30%, var(--c-accent-h) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero__desc {
@@ -349,10 +354,13 @@ ul { list-style: none; }
 .hero__desc p {
   font-size: clamp(0.98rem, 1.55vw, 1.15rem);
   color: var(--c-text-muted);
-  background: rgba(0, 0, 0, 0.42);
+  line-height: 1.65;
+  background: var(--c-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--c-accent);
   border-radius: var(--radius-sm);
-  padding: 13px 18px;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  padding: 15px 20px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
 }
 
 .hero__inline-link {
