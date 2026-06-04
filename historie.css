@@ -158,6 +158,43 @@ input:checked + .slider::before { transform: translateX(24px); }
 .timeline-content h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; color: #fff; }
 .timeline-content p { font-size: 0.9rem; color: var(--c-text-muted); line-height: 1.5; }
 
+/* ============================================================
+   🥚 EASTER EGG – ARDAROS (legendární hacker)
+   Vykukuje zpoza karty, hlava nad horní hranou.
+   ============================================================ */
+.ardaros-card {
+  overflow: visible;            /* aby hlava mohla přesahovat nad kartu */
+}
+
+.ardaros-egg {
+  position: absolute;
+  right: 18px;                  /* schovaný v pravém rohu karty */
+  bottom: 0;
+  width: 130px;
+  height: auto;
+  z-index: -1;                  /* za obsahem i pozadím karty */
+  opacity: 0.38;                /* lehce průhledný */
+  pointer-events: none;
+  filter: drop-shadow(0 0 14px rgba(229, 57, 53, 0.45)) saturate(0.85);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  animation: ardarosFloat 5s ease-in-out infinite;
+}
+
+/* Při najetí na kartu se Ardaros lehce odhalí a "nakoukne" víc */
+.ardaros-card:hover .ardaros-egg {
+  opacity: 0.6;
+  transform: translateY(-4px);
+}
+
+@keyframes ardarosFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+@media (max-width: 768px) {
+  .ardaros-egg { width: 100px; right: 10px; }
+}
+
 .timeline-content::after { content: ''; position: absolute; top: 32px; width: 0; height: 0; border-style: solid; }
 .timeline-item.left .timeline-content::after {
   right: -10px; border-width: 10px 0 10px 10px; border-color: transparent transparent transparent rgba(255, 255, 255, 0.03);
