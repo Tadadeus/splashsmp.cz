@@ -181,6 +181,111 @@ body {
 }
 
 /* ============================================================
+   KONTAKT & SOCIÁLNÍ SÍTĚ
+   ============================================================ */
+.contact-section {
+  padding: 10px 0 90px;
+}
+
+.contact-title {
+  text-align: center;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  font-weight: 800;
+  margin-bottom: 8px;
+  background: linear-gradient(120deg, #fff 30%, var(--c-accent-h) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-subtitle {
+  text-align: center;
+  color: var(--c-text-muted);
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  margin-bottom: 36px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+/* ------ Karta sociální sítě / kontaktu ------ */
+.contact-card {
+  --brand: var(--c-accent);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 28px 20px;
+  border-radius: var(--radius);
+  background: var(--c-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--c-text);
+  overflow: hidden;
+  transition: transform var(--tr), border-color var(--tr), box-shadow var(--tr);
+}
+
+/* Jemný barevný nádech značky odshora */
+.contact-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 100%;
+  background: linear-gradient(180deg,
+              color-mix(in srgb, var(--brand) 16%, transparent),
+              transparent 60%);
+  opacity: 0;
+  transition: opacity var(--tr);
+  pointer-events: none;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--brand);
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--brand) 45%, transparent);
+}
+.contact-card:hover::before { opacity: 1; }
+
+.contact-card__icon {
+  font-size: 2.2rem;
+  color: var(--brand);
+  margin-bottom: 6px;
+  transition: transform var(--tr);
+  position: relative;
+  z-index: 1;
+}
+.contact-card:hover .contact-card__icon {
+  transform: scale(1.12);
+}
+
+.contact-card__label {
+  font-size: 1.15rem;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-card__handle {
+  font-size: 0.85rem;
+  color: var(--c-text-dim);
+  word-break: break-word;
+  position: relative;
+  z-index: 1;
+}
+
+/* ------ Barvy jednotlivých značek ------ */
+.contact-card--tiktok    { --brand: #25F4EE; }
+.contact-card--instagram { --brand: #E1306C; }
+.contact-card--youtube   { --brand: #FF0000; }
+.contact-card--email     { --brand: var(--c-accent-h); }
+
+/* ============================================================
    RESPONZIVITA
    ============================================================ */
 @media (max-width: 600px) {
