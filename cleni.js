@@ -7,7 +7,9 @@ const cleni = [
   { name: "Tadadeus", role: "Majitel",   roleClass: "role--darkred",  desc: "Hlavní developer Minecraftu a tvůrce propagace", quote: "Chlochtahegenteorgende penerpulandova předmětvěc" },
   { name: "Tobiick",  role: "Majitel",   roleClass: "role--darkred",  desc: "Zakladatel SplashSMP a vedoucí discordu", quote: "Karaklan si dam" },
   { name: "Nojmisek", role: "Moderátor", roleClass: "role--blue", desc: "Pomáhá s komunitou a vývojem serveru", quote: "SplashSMP je nejlepší server" },
+  { name: "Itzz_MaTk0", role: "Moderátor", roleClass: "role--blue", desc: "Pomáhá s komunitou, hraje PvP", quote: "Palička je moje síla" },
   { name: "___HEADhunter___", role: "Hráč (OG)", roleClass: "role--pink", desc: "OG člen, builder a redstone inženýr", quote: "Arstotzka je vždy o krok napřed..." },
+
 ];
 
 const grid = document.getElementById("cleniGrid");
