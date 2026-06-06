@@ -250,39 +250,40 @@ ul { list-style: none; }
 /* Hamburger button */
 .hamburger {
   display: none;              /* skryt na desktopu */
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
   background: none;
   border: none;
   flex-shrink: 0;
-  position: relative;
   z-index: 901;
-  /* Dostatečný touch target; padding místo záporného marginu,
-     aby se otočený křížek neořezával u okraje obrazovky. */
+  /* Dostatečný touch target; bary jsou polohované absolutně uvnitř. */
+  position: relative;
   width: 44px;
   height: 44px;
-  padding: 8px;
-  gap: 5px;
+  padding: 0;
 }
 
+/* Bary jsou absolutně vycentrované → křížek je dokonale symetrický. */
 .hamburger__bar {
-  display: block;
-  width: 28px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 26px;
   height: 2.5px;
+  margin-left: -13px;         /* polovina šířky → přesný střed */
   background: var(--c-text);
   border-radius: 2px;
   transform-origin: center;
-  flex-shrink: 0;
-  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.25s ease;
+  transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s ease;
 }
+.hamburger__bar:nth-child(1) { transform: translateY(-8px); }
+.hamburger__bar:nth-child(2) { transform: translateY(0); }
+.hamburger__bar:nth-child(3) { transform: translateY(8px); }
 
-/* Animace → křížek */
-.hamburger.is-active .hamburger__bar:nth-child(1) { transform: translateY(9.75px) rotate(45deg); }
+/* Animace → křížek (oba diagonály se protnou přesně ve středu) */
+.hamburger.is-active .hamburger__bar:nth-child(1) { transform: translateY(0) rotate(45deg); }
 .hamburger.is-active .hamburger__bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.hamburger.is-active .hamburger__bar:nth-child(3) { transform: translateY(-9.75px) rotate(-45deg); }
+.hamburger.is-active .hamburger__bar:nth-child(3) { transform: translateY(0) rotate(-45deg); }
 
 /* ============================================================
    HERO

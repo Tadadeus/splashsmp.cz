@@ -226,7 +226,8 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-top: 3px solid #5865F2;          /* Discord blurple */
   border-radius: var(--radius);
-  padding: 34px 28px 28px;
+  /* Padding se zmenší na nízké obrazovce, ať se obsah vejde bez scrollu. */
+  padding: clamp(18px, 4vh, 34px) 28px clamp(16px, 3vh, 28px);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(88, 101, 242, 0.25);
   transform: scale(0.92) translateY(10px);
   transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -254,30 +255,31 @@ body {
 }
 
 .discord-modal__icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 16px;
+  /* Zmenší se na nízké obrazovce (zoom). */
+  width: clamp(44px, 9vh, 64px);
+  height: clamp(44px, 9vh, 64px);
+  margin: 0 auto clamp(8px, 2vh, 16px);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background: rgba(88, 101, 242, 0.15);
   border: 1px solid rgba(88, 101, 242, 0.4);
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 4vh, 1.8rem);
   color: #5865F2;
 }
 
 .discord-modal__title {
-  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  font-size: clamp(1.3rem, 3.5vh, 1.8rem);
   font-weight: 800;
   margin-bottom: 10px;
 }
 
 .discord-modal__text {
   color: var(--c-text-muted);
-  line-height: 1.6;
-  font-size: 0.95rem;
-  margin-bottom: 22px;
+  line-height: 1.55;
+  font-size: clamp(0.85rem, 2vh, 0.95rem);
+  margin-bottom: clamp(12px, 2.5vh, 22px);
 }
 
 .discord-modal__btn {
@@ -286,8 +288,8 @@ body {
   justify-content: center;
   gap: 10px;
   width: 100%;
-  padding: 13px 20px;
-  margin-bottom: 22px;
+  padding: clamp(9px, 1.6vh, 13px) 20px;
+  margin-bottom: clamp(12px, 2.5vh, 22px);
   background: #5865F2;
   color: #fff;
   font-weight: 700;
@@ -309,8 +311,9 @@ body {
 .discord-modal__widget iframe {
   display: block;
   width: 100%;
-  /* Přepíše pevné height="400" v HTML – na nízkých obrazovkách se zmenší. */
-  height: clamp(260px, 42vh, 400px) !important;
+  /* Přepíše pevné height="400" v HTML – výrazně se zmenší na nízké obrazovce,
+     aby se celý popup vešel bez scrollbaru. */
+  height: clamp(180px, 38vh, 400px) !important;
   border: 0;
 }
 

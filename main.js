@@ -66,20 +66,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       e.preventDefault();
 
-      // setTimeout (50 ms), aby se stihlo zavřít mobilní menu a obnovit
-      // overflow na body → přesné souřadnice cíle.
+      // Počkáme, až se zavře mobilní menu a odemkne se scroll (.no-scroll),
+      // jinak je layout zamčený a souřadnice cíle vyjdou špatně (skok dolů).
       setTimeout(() => {
         const rect = target.getBoundingClientRect();
+        const pageTop = rect.top + window.scrollY;          // absolutní pozice cíle
+        const visibleArea = window.innerHeight - NAV_HEIGHT; // prostor pod navbarem
 
-        // Vycentrujeme cíl do viditelné oblasti pod navbarem.
-        const visibleArea = window.innerHeight - NAV_HEIGHT;
-        let top = rect.top + window.scrollY - NAV_HEIGHT - (visibleArea - rect.height) / 2;
-
-        // Nikdy nescrolluj nad začátek stránky.
+        // Vycentrovat cíl do prostoru pod navbarem (nikdy nad začátek stránky).
+        let top = pageTop - NAV_HEIGHT - Math.max(0, (visibleArea - rect.height) / 2);
         top = Math.max(0, top);
 
         window.scrollTo({ top, behavior: 'smooth' });
-      }, 50);
+      }, 320);   // 320 ms ≈ doba zavření menu (transform 0.42s, stačí část)
     });
   });
 

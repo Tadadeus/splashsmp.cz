@@ -304,7 +304,8 @@ body {
   z-index: 1;
   width: 100%;
   max-width: 420px;
-  /* Odečítáme padding modalu (2× 16px); svh řeší mobilní lišty i zoom. */
+  /* Nikdy nepřeteče obrazovku (odečítáme padding modalu 2× 16px).
+     svh řeší mobilní lišty i zoom. */
   max-height: calc(100svh - 32px);
   max-height: calc(100vh - 32px);
   overflow-y: auto;
@@ -314,7 +315,8 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-top: 3px solid var(--c-accent);
   border-radius: var(--radius);
-  padding: 34px 28px 28px;
+  /* Padding se zmenší na nízké obrazovce, aby se obsah vešel bez scrollu. */
+  padding: clamp(18px, 4vh, 34px) 28px clamp(16px, 3vh, 28px);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px var(--c-accent-glow);
   transform: scale(0.92) translateY(10px);
   transition: transform 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -341,23 +343,24 @@ body {
 }
 
 .player-modal__skin {
-  width: 120px;
+  /* Skin se zmenší na nízké obrazovce (zoom), aby se popup vešel bez scrollu. */
+  width: clamp(70px, 16vh, 120px);
   height: auto;
   margin: 0 auto 14px;
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.55));
 }
 
 .player-modal__name {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3.5vh, 1.5rem);
   font-weight: 800;
   margin-bottom: 12px;
 }
 
 .player-modal__desc {
   color: var(--c-text-muted);
-  line-height: 1.65;
+  line-height: 1.6;
   font-size: 0.95rem;
-  margin: 16px 0;
+  margin: clamp(10px, 2vh, 16px) 0;
 }
 
 .player-modal__quote {
