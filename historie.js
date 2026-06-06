@@ -104,40 +104,71 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ────────────────────────────────────────────────────────
-     5. UDÁLOST → POPUP HRÁČE
-        Mapování id události → jméno hráče si vezmeme rovnou
-        z players.js (pole CLENI, pole "hist"). Žádné dvojí psaní.
+     5. UDÁLOST → POPUP HRÁČE (automaticky podle zmínek v textu)
+        Každé místo v ose, kde je hráč zmíněn, se dá rozkliknout a
+        otevře jeho popup (data z players.js). Když je v jednom textu
+        víc hráčů, vybere se ten, který má v celé ose nejméně zmínek
+        (= pro daný text nejvýznamnější).
      ──────────────────────────────────────────────────────── */
   if (window.Players && Array.isArray(window.CLENI)) {
-    // { "ev-ardaros": "Ardaros", ... }
-    const eventToPlayer = {};
-    window.CLENI.forEach(p => { if (p.hist) eventToPlayer[p.hist] = p.name; });
-
     window.Players.initModalControls();
 
-    document.querySelectorAll('[id^="ev-"]').forEach(el => {
-      const playerName = eventToPlayer[el.id];
+    // Aliasy → jméno hráče v datech. Hledá se case-insensitive jako podřetězec,
+    // proto stačí kořen slova (Adas → chytí i Adase/Adasem).
+    const aliases = [
+      { player: "Ardaros",        words: ["ardaros", "arda "] },
+      { player: "SweepingAttack", words: ["sweep"] },
+      { player: "Adas25",         words: ["adas"] },
+      { player: "Tadadeus",       words: ["tadadeus", "tadadeuse"] },
+      { player: "Tobiick",        words: ["tobiick", "tobi "] },
+      { player: "Itzz_MaTk0",     words: ["matko"] },
+      { player: "___HEADhunter___", words: ["headhunter", "head hunter"] },
+      { player: "LukeBot345",     words: ["lukebot"] },
+      { player: "Alexx_CZ",       words: ["king", "kinga"] },
+      { player: "Karaklan",       words: ["karaklan"] },
+      { player: "z0yn3_",         words: ["zydan"] },
+      { player: "SindlSin",       words: ["šindl", "sindl"] },
+      { player: "bratranec",      words: ["bratranec", "bratrance"] },
+      { player: "Martinjefrajer", words: ["martin"] },
+    ];
+
+    // Spočti, kolikrát je každý hráč v ose zmíněn (pro výběr "nejvýznamnějšího").
+    const allCards = [...document.querySelectorAll('.timeline-content, .interstitial-card')];
+    const fullText = allCards.map(c => c.textContent.toLowerCase()).join("  ");
+    const mentionCount = {};
+    aliases.forEach(a => {
+      mentionCount[a.player] = a.words.reduce((sum, w) => {
+        return sum + fullText.split(w).length - 1;
+      }, 0);
+    });
+
+    function playerForText(text) {
+      const t = text.toLowerCase();
+      const matches = aliases.filter(a => a.words.some(w => t.includes(w)));
+      if (matches.length === 0) return null;
+      // Vyber hráče s nejméně zmínkami v celé ose.
+      matches.sort((a, b) => mentionCount[a.player] - mentionCount[b.player]);
+      // Jen pokud na něj máme kartu v datech.
+      const found = matches.find(m => window.Players.findByName(m.player));
+      return found ? found.player : null;
+    }
+
+    allCards.forEach(card => {
+      const playerName = playerForText(card.textContent);
       if (!playerName) return;
 
-      // Klikatelný je vnitřní obsah (karta), ne tlačítko meziudálosti.
-      const clickTarget = el.classList.contains('timeline-item')
-        ? el.querySelector('.timeline-content')
-        : el.querySelector('.interstitial-card');
-      if (!clickTarget) return;
+      card.classList.add('has-player');
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.title = `Zobrazit hráče ${playerName}`;
 
-      clickTarget.classList.add('has-player');
-      clickTarget.setAttribute('role', 'button');
-      clickTarget.setAttribute('tabindex', '0');
-      clickTarget.title = `Zobrazit hráče ${playerName}`;
-
-      const openPlayer = (e) => {
-        // Klik na tlačítko meziudálosti necháme být (rozbaluje/sbaluje).
-        if (e.target.closest('.interstitial-btn')) return;
+      const open = (e) => {
+        if (e && e.target && e.target.closest('.interstitial-btn')) return;
         window.Players.openByName(playerName);
       };
-      clickTarget.addEventListener('click', openPlayer);
-      clickTarget.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.Players.openByName(playerName); }
+      card.addEventListener('click', open);
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
       });
     });
   }

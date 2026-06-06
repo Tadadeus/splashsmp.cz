@@ -214,11 +214,11 @@ body {
 .discord-modal__box {
   position: relative;
   z-index: 1;
-  width: 100%;
-  max-width: 420px;
-  /* Odečítáme padding modalu (2× 16px), svh řeší mobilní lišty i zoom. */
-  max-height: calc(100svh - 32px);
-  max-height: calc(100vh - 32px);
+  /* Šířka v rem → škáluje se se zoomem, nikdy se neroztáhne přes celé okno. */
+  width: 26rem;
+  max-width: calc(100vw - 1.5rem);
+  /* Výška roste s obsahem; scroll UVNITŘ jen když je vyšší než okno. */
+  max-height: calc(100vh - 2rem);
   overflow-y: auto;
   margin: auto;
   text-align: center;
@@ -325,5 +325,15 @@ body {
   .formular-embed {
     height: 82vh;
     max-height: none;
+  }
+
+  /* Discord popup – skoro celá šířka, scroll uvnitř když je moc vysoký. */
+  .discord-modal { padding: 12px; }
+  .discord-modal__box {
+    width: calc(100vw - 1.5rem);
+    max-width: 24rem;
+    max-height: calc(100svh - 1.5rem);
+    max-height: calc(100vh - 1.5rem);
+    padding: 24px 18px 20px;
   }
 }

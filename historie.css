@@ -330,8 +330,12 @@ input:checked + .slider::before { transform: translateX(24px); }
 }
 .has-player:hover::before,
 .has-player:focus-visible::before { opacity: 1; transform: scale(1.15); }
-.interstitial-card.has-player { position: relative; }
 .has-player:hover { border-color: var(--c-accent) !important; }
+
+/* Meziudálost (fialová) → ikonka i hover okraj ve fialové, ladí s motivem. */
+.interstitial-card.has-player { position: relative; }
+.interstitial-card.has-player::before { color: #8e2e9e; }   /* tmavší fialová */
+.interstitial-card.has-player:hover { border-color: var(--c-purple) !important; }
 
 /* ============================================================
    ZVÝRAZNĚNÍ UDÁLOSTI PŘI PŘÍCHODU Z KARTY HRÁČE (#ev-...)
