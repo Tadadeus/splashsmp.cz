@@ -55,8 +55,15 @@ body {
   overflow-x: hidden;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   position: relative;
+}
+
+/* Zámek scrollu pozadí, když je otevřený modal (funguje i na mobilu). */
+html.no-scroll,
+body.no-scroll {
+  overflow: hidden !important;
+  overscroll-behavior: none;
 }
 
 img { display: block; max-width: 100%; }

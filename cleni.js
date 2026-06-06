@@ -88,14 +88,16 @@ if (root) {
     `;
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+    document.documentElement.classList.add("no-scroll");
+    document.body.classList.add("no-scroll");
   }
 
   function closePlayer() {
     if (!modal) return;
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+    document.documentElement.classList.remove("no-scroll");
+    document.body.classList.remove("no-scroll");
   }
 
   // Klik na kartu → otevřít detail.

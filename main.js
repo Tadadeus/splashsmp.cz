@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
       hamburger.setAttribute('aria-expanded', 'true');
       mobileMenu.classList.add('is-open');
       mobileMenu.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      document.documentElement.classList.add('no-scroll');
+      document.body.classList.add('no-scroll');
     };
 
     const closeMenu = () => {
@@ -23,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
       hamburger.setAttribute('aria-expanded', 'false');
       mobileMenu.classList.remove('is-open');
       mobileMenu.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+      document.documentElement.classList.remove('no-scroll');
+      document.body.classList.remove('no-scroll');
     };
 
     hamburger.addEventListener('click', () => {
@@ -64,24 +66,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
       e.preventDefault();
 
-      // Použijeme setTimeout (50ms), aby se stihlo zavřít mobilní menu
-      // a obnovit overflow na body. Tím získáme 100% přesné souřadnice.
+      // setTimeout (50 ms), aby se stihlo zavřít mobilní menu a obnovit
+      // overflow na body → přesné souřadnice cíle.
       setTimeout(() => {
-        let totalOffset = NAV_HEIGHT;
+        const rect = target.getBoundingClientRect();
 
-        // Pokud jsme na mobilu, dáme schválně velkou rezervu (např. 90px),
-        // abychom hned viděli, že to reaguje. Pak ji můžeš snížit.
-        if (window.innerWidth <= 768) {
-          totalOffset += 250; 
-        }
+        // Vycentrujeme cíl do viditelné oblasti pod navbarem.
+        const visibleArea = window.innerHeight - NAV_HEIGHT;
+        let top = rect.top + window.scrollY - NAV_HEIGHT - (visibleArea - rect.height) / 2;
 
-        const top = target.getBoundingClientRect().top + window.scrollY - totalOffset;
-        
-        window.scrollTo({ 
-          top: top, 
-          behavior: 'smooth' 
-        });
-      }, 50); 
+        // Nikdy nescrolluj nad začátek stránky.
+        top = Math.max(0, top);
+
+        window.scrollTo({ top, behavior: 'smooth' });
+      }, 50);
     });
   });
 
