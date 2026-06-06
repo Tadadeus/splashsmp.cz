@@ -206,10 +206,11 @@ body {
 }
 
 .contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;   /* zbylé karty na posledním řádku vycentrované */
   gap: 18px;
-  max-width: 920px;
+  max-width: 940px;
   margin: 0 auto;
 }
 
@@ -217,6 +218,7 @@ body {
 .contact-card {
   --brand: var(--c-accent);
   position: relative;
+  flex: 0 1 200px;           /* pevná, ale flexibilní šířka → hezké zalomení */
   display: flex;
   flex-direction: column;
   align-items: center;
