@@ -79,6 +79,40 @@ body {
   padding: 20px 0 90px;
 }
 
+/* ------ Sekce (Admin tým / Hráči) ------ */
+.cleni-block {
+  margin-bottom: 64px;
+}
+.cleni-block:last-child {
+  margin-bottom: 0;
+}
+
+.cleni-block__title {
+  text-align: center;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  margin-bottom: 14px;
+  background: linear-gradient(120deg, #fff 30%, var(--c-accent-h) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Dekorativní linka pod nadpisem sekce */
+.cleni-block__line {
+  width: 80px;
+  height: 3px;
+  margin: 0 auto 34px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
+}
+
+.cleni-block__empty {
+  text-align: center;
+  color: var(--c-text-dim);
+  font-style: italic;
+}
+
 /* ------ Mřížka karet (max 4 v řadě, centrované) ------ */
 .cleni-grid {
   display: flex;
@@ -100,7 +134,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Stejná minimální výška pro všechny karty → žádná není vyšší než druhá */
   min-height: 380px;
   transition: border-color var(--tr), transform var(--tr), box-shadow var(--tr);
 }
@@ -151,6 +184,7 @@ body {
 .role--red       { color: #e63d3b; }
 .role--darkred   { color: #a71f1c; }
 .role--blue      { color: #1b55ba; }
+.role--lightblue { color: #407adf; }
 .role--cyan      { color: #1c9597; }
 .role--pink      { color: #d13cb1; }
 .role--purple    { color: #a12eb5; }
@@ -166,8 +200,6 @@ body {
   color: var(--c-text-muted);
   line-height: 1.55;
   margin-bottom: 16px;
-  /* PEVNÁ výška na 2 řádky → popis zabírá všude stejně místa, takže
-     citace začíná na každé kartě ve stejné vzdálenosti od vrchu. */
   height: 2.9em;
   display: flex;
   align-items: flex-start;
@@ -178,7 +210,6 @@ body {
 /* ------ Citace / quote box ------ */
 .cleni-card__quote {
   width: 100%;
-  /* Žádné flex/margin → box má výšku svého textu, začíná hned pod popisem. */
   font-size: 0.85rem;
   font-style: italic;
   color: var(--c-text-dim);
