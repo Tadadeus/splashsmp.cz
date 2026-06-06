@@ -270,9 +270,28 @@
       // Kdyby auto-detekce v některém prohlížeči selhala, uživatel klikne sám.
       if (doneBtn) doneBtn.addEventListener('click', openModal);
 
+      // Counter-scale proti zoomu – popup má pořád stejnou fyzickou velikost.
+      const box = modal.querySelector('.discord-modal__box');
+      function pageZoom() {
+        if (window.outerWidth > 0 && window.innerWidth > 0) {
+          const z = window.outerWidth / window.innerWidth;
+          if (z > 0.3 && z < 5) return z;
+        }
+        return 1;
+      }
+      function applyZoom() {
+        if (!box) return;
+        const z = window.innerWidth <= 600 ? 1 : pageZoom();
+        box.style.setProperty('--inv-zoom', (1 / z).toFixed(4));
+      }
+      window.addEventListener('resize', () => {
+        if (modal.classList.contains('is-open')) applyZoom();
+      });
+
       function openModal() {
         if (shown) return;
         shown = true;
+        applyZoom();
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.documentElement.classList.add('no-scroll');

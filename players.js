@@ -125,7 +125,34 @@ window.Players = (function () {
 
   // Najde modal podle id; když není na stránce, nic nedělá.
   const modal = () => document.getElementById("playerModal");
+  const modalBox = () => document.querySelector("#playerModal .player-modal__box");
   let modalHistoryPushed = false;
+
+  // ── COUNTER-SCALE PROTI ZOOMU ──
+  // Karta má pevnou velikost v px. Když uživatel zoomuje prohlížeč,
+  // spočítáme faktor zoomu a kartu zmenšíme/zvětšíme 1/zoom → na obrazovce
+  // má pořád stejnou fyzickou velikost (jako nalepený papír).
+  function pageZoom() {
+    // Chrome/Edge/Firefox: poměr vnější a vnitřní šířky okna = zoom.
+    if (window.outerWidth > 0 && window.innerWidth > 0) {
+      const z = window.outerWidth / window.innerWidth;
+      // Rozumné meze (mimo ně už to nedává smysl / je to devtools).
+      if (z > 0.3 && z < 5) return z;
+    }
+    return 1;
+  }
+  function applyZoom() {
+    const box = modalBox();
+    if (!box) return;
+    // Na mobilu (úzké okno) counter-scale nechceme – řeší to CSS.
+    const z = window.innerWidth <= 600 ? 1 : pageZoom();
+    box.style.setProperty("--inv-zoom", (1 / z).toFixed(4));
+  }
+  // Zoom v prohlížeči spouští 'resize'.
+  window.addEventListener("resize", () => {
+    const m = modal();
+    if (m && m.classList.contains("is-open")) applyZoom();
+  });
 
   function fillBody(p, opts) {
     const mBody = document.getElementById("playerModalBody");
@@ -147,6 +174,7 @@ window.Players = (function () {
     const m = modal();
     if (!p || !m) return;
     fillBody(p, opts);
+    applyZoom();                 // nastav counter-scale dle aktuálního zoomu
     m.classList.add("is-open");
     m.setAttribute("aria-hidden", "false");
     document.documentElement.classList.add("no-scroll");
