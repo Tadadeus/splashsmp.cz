@@ -166,16 +166,19 @@ body {
   color: var(--c-text-muted);
   line-height: 1.55;
   margin-bottom: 16px;
-  /* Vyhrazené místo na ~2 řádky → citace u všech karet začíná stejně */
-  min-height: 2.8em;
+  /* PEVNÁ výška na 2 řádky → popis zabírá všude stejně místa, takže
+     citace začíná na každé kartě ve stejné vzdálenosti od vrchu. */
+  height: 2.9em;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
 }
 
 /* ------ Citace / quote box ------ */
 .cleni-card__quote {
   width: 100%;
-  /* Vyplní zbývající místo v kartě → spodní hrana všech citací je
-     zarovnaná, text začíná odshora a roste dolů. */
-  flex: 1 1 auto;
+  /* Žádné flex/margin → box má výšku svého textu, začíná hned pod popisem. */
   font-size: 0.85rem;
   font-style: italic;
   color: var(--c-text-dim);
