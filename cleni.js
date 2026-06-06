@@ -44,7 +44,8 @@ function rolesHTML(p) {
 function cardHTML(p, index) {
   return `
     <article class="cleni-card" data-index="${index}" tabindex="0" role="button" aria-label="Zobrazit detail hráče ${p.name}">
-      <img class="cleni-card__skin" src="https://vzge.me/bust/256/${skinName(p)}" alt="${p.name}" loading="lazy" />
+      <img class="cleni-card__skin" src="https://vzge.me/bust/256/${skinName(p)}" alt="${p.name}" loading="lazy"
+           onerror="this.onerror=null; this.src='https://vzge.me/full/256/${skinName(p)}';" />
       <h3 class="cleni-card__name">${p.name}</h3>
       ${rolesHTML(p)}
       <p class="cleni-card__desc">${p.desc}</p>
