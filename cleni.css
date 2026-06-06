@@ -173,8 +173,9 @@ body {
 /* ------ Citace / quote box ------ */
 .cleni-card__quote {
   width: 100%;
-  /* Žádné margin-top: auto → citace začíná hned pod popisem (zarovnání
-     odshora) a roste směrem dolů. Všechny karty jsou stejně vysoké. */
+  /* Vyplní zbývající místo v kartě → spodní hrana všech citací je
+     zarovnaná, text začíná odshora a roste dolů. */
+  flex: 1 1 auto;
   font-size: 0.85rem;
   font-style: italic;
   color: var(--c-text-dim);
