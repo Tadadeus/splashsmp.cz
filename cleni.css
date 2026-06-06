@@ -397,21 +397,38 @@ body {
   opacity: 0.7;
 }
 
-/* ------ Odkaz na video (TikTok / YouTube) v popupu ------ */
+/* ------ Odkazy v popupu (video / Historie) ------ */
+.player-modal__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
 .player-modal__link {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  margin-top: 18px;
-  padding: 11px 22px;
+  padding: 11px 20px;
   border-radius: 999px;
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   color: #fff;
   transition: transform var(--tr), box-shadow var(--tr), opacity var(--tr);
 }
 .player-modal__link i { font-size: 1.1em; }
 .player-modal__link:hover { transform: translateY(-2px); }
+
+/* Tlačítko na událost v Historii – v barvě webu (accent). */
+.player-modal__link--hist {
+  background: var(--c-accent);
+  box-shadow: 0 6px 18px var(--c-accent-glow);
+}
+.player-modal__link--hist:hover {
+  background: var(--c-accent-h);
+  box-shadow: 0 8px 24px var(--c-accent-glow);
+}
 
 .player-modal__link--tt {
   background: #000;

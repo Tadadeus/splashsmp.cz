@@ -2,18 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-if (hamburger) {
-  hamburger.addEventListener('click', (e) => {
-    e.preventDefault(); // Zamezí skákání stránky, pokud je to href="#"
-    
-    console.log("Hamburger menu úspěšně přepnuto!");
-    
-    // Používáme bezpečnější toggle pro všechny prvky současně
-    hamburger.classList.toggle('active');
-    if (navbarNav) navbarNav.classList.toggle('active');
-    if (navbarHeader) navbarHeader.classList.toggle('active');
-  }); // <--- Odstraň to "true" na konci, běžný bubbling bohatě stačí
-}
+  // (Hamburger / mobilní menu řeší sdílený main.js – tady nic netřeba.)
+
   /* ────────────────────────────────────────────────────────
      1. PŘEPÍNAČ DAT (ZDE POKRAČUJE TVŮJ DALŠÍ KÓD...)
      ──────────────────────────────────────────────────────── */
@@ -71,5 +61,45 @@ if (hamburger) {
     historyItems.forEach(item => historyObserver.observe(item));
   } else {
     historyItems.forEach(item => item.classList.add('is-visible'));
+  }
+
+  /* ────────────────────────────────────────────────────────
+     4. PŘÍCHOD Z KARTY HRÁČE (#ev-...) → najdi událost,
+        rozbal meziudálost, odscrolluj a zvýrazni ji.
+     ──────────────────────────────────────────────────────── */
+  function focusEvent(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    // Zajisti viditelnost (reveal animace ji jinak skrývá).
+    target.classList.add('is-visible');
+
+    // Pokud je to meziudálost, automaticky ji rozbal.
+    if (target.classList.contains('timeline-interstitial')) {
+      const wrapper = target.querySelector('.interstitial-wrapper');
+      const btn = target.querySelector('.interstitial-btn');
+      if (wrapper && !wrapper.classList.contains('active') && btn) {
+        window.toggleInterstitial(btn);
+      }
+    }
+
+    // Odscrolluj s rezervou na fixní navbar a zvýrazni událost.
+    const navH = parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10
+    ) || 68;
+
+    setTimeout(() => {
+      const top = target.getBoundingClientRect().top + window.scrollY - navH - 40;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+
+      target.classList.add('event-highlight');
+      setTimeout(() => target.classList.remove('event-highlight'), 2600);
+    }, 250);  // počkáme na reveal/rozbalení
+  }
+
+  if (window.location.hash.startsWith('#ev-')) {
+    const id = window.location.hash.slice(1);
+    // Po načtení (a doběhnutí nativního skoku) zaměříme událost.
+    window.addEventListener('load', () => setTimeout(() => focusEvent(id), 80));
   }
 });
