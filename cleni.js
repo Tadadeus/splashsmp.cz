@@ -4,7 +4,8 @@
 // roleClass: "role--red" (Majitel), "role--blue" (Moderátor) …
 // VOLITELNÉ: role2 + roleClass2 = druhá role (když chybí, nezobrazí se).
 // longDesc:  delší popis, zobrazí se v popup okně po kliknutí na kartu.
-// skin:      přepíše skin podle jiného jména (např. hráč co změnil nick).
+// skin:      přepíše skin – buď jiné jméno (hráč co změnil nick),
+//            nebo přímo celá URL obrázku (začíná "http").
 //            Když chybí, použije se skin podle "name".
 // ==========================================================================
 const cleni = [
@@ -17,7 +18,7 @@ const cleni = [
   { section: "admin", name: "___HEADhunter___", role: "Helper", roleClass: "role--lightblue", desc: "OG člen, helper, builder a redstone inženýr", quote: "Arstotzka je vždy o krok napřed...", longDesc: "HEADhunter je OG člen serveru, helper, builder a redstone inženýr. Patří k legendám SplashSMP." },
 
   // ── HRÁČI ──
-  { section: "hrac", name: "Ardaros", skin: "Allah", role: "Hacker", roleClass: "role--red", desc: "Legendární hacker serveru, o kterém vznikla řada videí", quote: "Vykvasim ti kabanos...", longDesc: "Ardaros je nejznámější hacker v historii SplashSMP. Několikrát hacknul server, odpálil spawn a stal se tak doslova legendou – natočili jsme o něm přes 10 videí. Jeho lore se postupně odhaluje napříč sezónami. Více o jeho řádění najdeš v sekci Historie." },
+  { section: "hrac", name: "Ardaros", skin: "https://visage.surgeplay.com/bust/256/a0c52609df90475d93f3e8ad4ab9786c", role: "Hacker", roleClass: "role--red", desc: "Legendární hacker serveru, o kterém vznikla řada videí", quote: "Vykvasim ti kabanos...", longDesc: "Ardaros je nejznámější hacker v historii SplashSMP. Několikrát hacknul server, odpálil spawn a stal se tak doslova legendou – natočili jsme o něm přes 10 videí. Jeho lore se postupně odhaluje napříč sezónami. Více o jeho řádění najdeš v sekci Historie." },
 
 ];
 
@@ -27,9 +28,13 @@ const sections = [
   { key: "hrac",  title: "Hráči", subtitle: "Hráči, kteří tvoří srdce serveru a dělají SplashSMP tím, čím je." },
 ];
 
-// Jméno pro vykreslení skinu – přepsatelné přes "skin" (změna nicku apod.).
-function skinName(p) {
-  return encodeURIComponent(p.skin || p.name);
+// URL skinu. Když je "skin" celá adresa (http…), použije se rovnou.
+// Jinak se poskládá vzge.me URL podle jména (nebo "skin" = jiný nick).
+//   type = "bust" (karta) | "full" (popup), size = px
+function skinSrc(p, type, size) {
+  const skin = p.skin || p.name;
+  if (/^https?:\/\//i.test(skin)) return skin;        // přímá URL obrázku
+  return `https://vzge.me/${type}/${size}/${encodeURIComponent(skin)}`;
 }
 
 // Sestaví HTML pro role (jedna nebo dvě).
@@ -44,8 +49,7 @@ function rolesHTML(p) {
 function cardHTML(p, index) {
   return `
     <article class="cleni-card" data-index="${index}" tabindex="0" role="button" aria-label="Zobrazit detail hráče ${p.name}">
-      <img class="cleni-card__skin" src="https://vzge.me/bust/256/${skinName(p)}" alt="${p.name}" loading="lazy"
-           onerror="this.onerror=null; this.src='https://vzge.me/full/256/${skinName(p)}';" />
+      <img class="cleni-card__skin" src="${skinSrc(p, 'bust', 256)}" alt="${p.name}" loading="lazy" />
       <h3 class="cleni-card__name">${p.name}</h3>
       ${rolesHTML(p)}
       <p class="cleni-card__desc">${p.desc}</p>
@@ -89,7 +93,7 @@ if (root) {
     const p = cleni[i];
     if (!p || !modal) return;
     mBody.innerHTML = `
-      <img class="player-modal__skin" src="https://vzge.me/full/384/${skinName(p)}" alt="${p.name}" />
+      <img class="player-modal__skin" src="${skinSrc(p, 'full', 384)}" alt="${p.name}" />
       <h3 class="player-modal__name">${p.name}</h3>
       ${rolesHTML(p)}
       <p class="player-modal__desc">${p.longDesc || p.desc}</p>
