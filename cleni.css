@@ -102,9 +102,19 @@ body {
 .cleni-block__line {
   width: 80px;
   height: 3px;
-  margin: 0 auto 34px;
+  margin: 0 auto 18px;
   border-radius: 2px;
   background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
+}
+
+/* Popisek sekce (pod nadpisem) */
+.cleni-block__subtitle {
+  max-width: 640px;
+  margin: 0 auto 34px;
+  text-align: center;
+  color: var(--c-text-muted);
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  line-height: 1.6;
 }
 
 .cleni-block__empty {

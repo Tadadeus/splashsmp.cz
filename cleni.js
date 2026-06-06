@@ -20,7 +20,7 @@ const cleni = [
 
 // Sekce v pořadí, ve kterém se vykreslí.
 const sections = [
-  { key: "admin", title: "Admin tým" },
+  { key: "admin", title: "Admin tým", subtitle: "Tým, který stojí za SplashSMP – majitelé, vývojáři a moderátoři komunity." },
   { key: "hrac",  title: "Hráči" },
 ];
 
@@ -58,10 +58,15 @@ if (root) {
       ? `<div class="cleni-grid">${members.map(x => cardHTML(x.p, x.i)).join("")}</div>`
       : `<p class="cleni-block__empty">Sekce se připravuje…</p>`;
 
+    const subtitle = sec.subtitle
+      ? `<p class="cleni-block__subtitle">${sec.subtitle}</p>`
+      : "";
+
     return `
       <div class="cleni-block">
         <h2 class="cleni-block__title">${sec.title}</h2>
         <div class="cleni-block__line"></div>
+        ${subtitle}
         ${body}
       </div>
     `;
