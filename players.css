@@ -80,23 +80,22 @@
 .player-modal__box {
   position: relative;
   z-index: 1;
-  /* ŠÍŘKA v rem – škáluje se SPOLU se zoomem (rem závisí na root fontu,
-     který zoom mění úměrně), takže karta vypadá při každém zoomu stejně
-     a nikdy se neroztáhne. Na úzkém okně se přizpůsobí (max-width). */
-  width: 23rem;
+  /* ŠÍŘKA ve vw → NEZÁVISLÁ NA ZOOMU. Zoom zvětší celou stránku "pod"
+     kartou, ale karta si drží stále stejnou fyzickou velikost na obrazovce
+     (jako kdybys měřil pravítkem – pořád stejné cm). Clamp drží rozumnou
+     velikost na malých i velkých obrazovkách. */
+  width: clamp(270px, 19vw, 380px);
   max-width: calc(100vw - 1.5rem);
-  /* Výška roste s obsahem; když by ale karta byla vyšší než okno,
-     zastropuje se a scrolluje UVNITŘ (žádné přetečení mimo obrazovku). */
-  max-height: calc(100vh - 2rem);
+  /* Výška roste s obsahem; scroll UVNITŘ jen když je vyšší než okno. */
+  max-height: 92vh;
   overflow-y: auto;
-  /* Drží kartu vystředěnou a dosažitelnou, když overlay scrolluje. */
   margin: auto;
   text-align: center;
   background: var(--c-bg-card);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-top: 3px solid var(--c-accent);
   border-radius: var(--radius);
-  padding: 30px 26px 26px;
+  padding: 26px 22px 22px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px var(--c-accent-glow);
   transform: scale(0.92) translateY(10px);
   transition: transform 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -122,16 +121,16 @@
   transform: scale(1.1);
 }
 
-/* Pevná velikost (px) → zoom obsah nestrečuje. */
+/* Vnitřek také ve vw → drží stejnou fyzickou velikost při zoomu jako karta. */
 .player-modal__skin {
-  width: 110px;
+  width: clamp(80px, 5.5vw, 110px);
   height: auto;
   margin: 0 auto 14px;
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.55));
 }
 
 .player-modal__name {
-  font-size: 1.45rem;
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
   font-weight: 800;
   margin-bottom: 12px;
   word-break: break-word;
@@ -139,20 +138,20 @@
 
 .player-modal__desc {
   color: var(--c-text-muted);
-  line-height: 1.6;
-  font-size: 0.95rem;
+  line-height: 1.55;
+  font-size: clamp(0.82rem, 0.95vw, 0.95rem);
   margin: 14px 0;
 }
 
 .player-modal__quote {
-  font-size: 0.9rem;
+  font-size: clamp(0.78rem, 0.9vw, 0.9rem);
   font-style: italic;
   color: var(--c-text-dim);
   line-height: 1.5;
   background: rgba(0, 0, 0, 0.35);
   border-left: 3px solid var(--c-accent);
   border-radius: 8px;
-  padding: 12px 16px;
+  padding: 11px 15px;
   text-align: left;
 }
 .player-modal__quote i {
@@ -175,10 +174,10 @@
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  padding: 11px 20px;
+  padding: 10px 18px;
   border-radius: 999px;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 0.9vw, 0.9rem);
   color: #fff;
   transition: transform var(--tr), box-shadow var(--tr), opacity var(--tr);
 }

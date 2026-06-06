@@ -214,11 +214,11 @@ body {
 .discord-modal__box {
   position: relative;
   z-index: 1;
-  /* Šířka v rem → škáluje se se zoomem, nikdy se neroztáhne přes celé okno. */
-  width: 26rem;
+  /* Šířka ve vw → nezávislá na zoomu (stejná fyzická velikost na obrazovce). */
+  width: clamp(300px, 23vw, 430px);
   max-width: calc(100vw - 1.5rem);
   /* Výška roste s obsahem; scroll UVNITŘ jen když je vyšší než okno. */
-  max-height: calc(100vh - 2rem);
+  max-height: 92vh;
   overflow-y: auto;
   margin: auto;
   text-align: center;
