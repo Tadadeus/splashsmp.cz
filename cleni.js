@@ -5,8 +5,10 @@
 // VOLITELNÉ: role2 + roleClass2 = druhá role (když chybí, nezobrazí se).
 // longDesc:  delší popis, zobrazí se v popup okně po kliknutí na kartu.
 // skin:      přepíše skin – buď jiné jméno (hráč co změnil nick),
-//            nebo přímo celá URL obrázku (začíná "http").
-//            Když chybí, použije se skin podle "name".
+//            nebo přímo celá URL obrázku (začíná "http") pro KARTU (bust).
+// skinFull:  volitelná celá URL pro POPUP (full model). Když chybí a "skin"
+//            je URL, použije se "skin" i v popupu.
+//            Když nic z toho, skin se bere podle "name".
 // ==========================================================================
 const cleni = [
   // ── ADMIN TÝM ──
@@ -18,7 +20,7 @@ const cleni = [
   { section: "admin", name: "___HEADhunter___", role: "Helper", roleClass: "role--lightblue", desc: "OG člen, helper, builder a redstone inženýr", quote: "Arstotzka je vždy o krok napřed...", longDesc: "HEADhunter je OG člen serveru, helper, builder a redstone inženýr. Patří k legendám SplashSMP." },
 
   // ── HRÁČI ──
-  { section: "hrac", name: "Ardaros", skin: "https://visage.surgeplay.com/bust/256/a0c52609df90475d93f3e8ad4ab9786c", role: "Hacker", roleClass: "role--red", desc: "Legendární hacker serveru, o kterém vznikla řada videí", quote: "Vykvasim ti kabanos...", longDesc: "Ardaros je nejznámější hacker v historii SplashSMP. Několikrát hacknul server, odpálil spawn a stal se tak doslova legendou – natočili jsme o něm přes 10 videí. Jeho lore se postupně odhaluje napříč sezónami. Více o jeho řádění najdeš v sekci Historie." },
+  { section: "hrac", name: "Ardaros", skin: "https://visage.surgeplay.com/bust/256/a0c52609df90475d93f3e8ad4ab9786c", skinFull: "https://visage.surgeplay.com/full/256/a0c52609df90475d93f3e8ad4ab9786c", role: "Hacker", roleClass: "role--red", desc: "Legendární hacker serveru, o kterém vznikla řada videí", quote: "Vykvasim ti kabanos...", longDesc: "Ardaros je nejznámější hacker v historii SplashSMP. Několikrát hacknul server, odpálil spawn a stal se tak doslova legendou – natočili jsme o něm přes 10 videí. Jeho lore se postupně odhaluje napříč sezónami. Více o jeho řádění najdeš v sekci Historie." },
 
 ];
 
@@ -28,10 +30,13 @@ const sections = [
   { key: "hrac",  title: "Hráči", subtitle: "Hráči, kteří tvoří srdce serveru a dělají SplashSMP tím, čím je." },
 ];
 
-// URL skinu. Když je "skin" celá adresa (http…), použije se rovnou.
-// Jinak se poskládá vzge.me URL podle jména (nebo "skin" = jiný nick).
+// URL skinu.
 //   type = "bust" (karta) | "full" (popup), size = px
+// Pro full model dáme přednost "skinFull", pak "skin", pak jménu.
 function skinSrc(p, type, size) {
+  // Popup (full): pokud je zadaná samostatná URL, použij ji.
+  if (type === "full" && /^https?:\/\//i.test(p.skinFull || "")) return p.skinFull;
+
   const skin = p.skin || p.name;
   if (/^https?:\/\//i.test(skin)) return skin;        // přímá URL obrázku
   return `https://vzge.me/${type}/${size}/${encodeURIComponent(skin)}`;
