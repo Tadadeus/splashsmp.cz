@@ -79,62 +79,27 @@ body {
   padding: 20px 0 90px;
 }
 
-/* ------ "Připravuje se" panel ------ */
-.cleni-soon {
-  max-width: 700px;
-  margin: 0 auto 48px;
-  text-align: center;
-  background: var(--c-bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius);
-  padding: 40px 28px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
-}
-
-.cleni-soon__icon-wrap {
-  width: 76px;
-  height: 76px;
-  margin: 0 auto 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(0, 94, 255, 0.12);
-  border: 1px solid rgba(0, 94, 255, 0.35);
-}
-
-.cleni-soon__icon {
-  font-size: 2rem;
-  color: var(--c-accent-h);
-}
-
-.cleni-soon__title {
-  font-size: clamp(1.4rem, 3vw, 1.9rem);
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.cleni-soon__text {
-  color: var(--c-text-muted);
-  line-height: 1.7;
-  font-size: clamp(0.92rem, 2vw, 1rem);
-}
-
-/* ------ Mřížka karet (placeholder) ------ */
+/* ------ Mřížka karet (max 4 v řadě, centrované) ------ */
 .cleni-grid {
-  max-width: 900px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  max-width: 1180px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
 }
 
 .cleni-card {
+  flex: 0 1 270px;
+  max-width: 280px;
   background: var(--c-bg-card);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius);
-  padding: 28px 20px;
+  padding: 26px 22px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transition: border-color var(--tr), transform var(--tr), box-shadow var(--tr);
 }
 
@@ -144,36 +109,81 @@ body {
   box-shadow: 0 10px 30px var(--c-accent-glow);
 }
 
-.cleni-card__avatar {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  font-size: 1.5rem;
-  color: var(--c-text-dim);
+/* ------ Skin hráče ------ */
+.cleni-card__skin {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  margin-bottom: 14px;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
 }
 
 .cleni-card__name {
-  font-size: 1.15rem;
-  font-weight: 600;
-  margin-bottom: 6px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-.cleni-card__role {
+/* ------ Role badge (kruhový orámovaný mini box) ------ */
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+  border: 1.5px solid currentColor;
+  background: rgba(255, 255, 255, 0.04);
+  text-transform: uppercase;
+}
+.role-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.role--red  { color: var(--c-red, #e53935); }
+.role--blue { color: var(--c-accent-h, #1a6fff); }
+
+/* ------ Popis ------ */
+.cleni-card__desc {
+  font-size: 0.9rem;
+  color: var(--c-text-muted);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+/* ------ Citace / quote box ------ */
+.cleni-card__quote {
+  width: 100%;
+  margin-top: auto;
+  font-size: 0.85rem;
+  font-style: italic;
   color: var(--c-text-dim);
-  font-size: 0.92rem;
+  line-height: 1.5;
+  background: rgba(0, 0, 0, 0.35);
+  border-left: 3px solid var(--c-accent);
+  border-radius: 8px;
+  padding: 10px 14px;
+  text-align: left;
+}
+.cleni-card__quote i {
+  margin-right: 6px;
+  color: var(--c-accent);
+  font-style: normal;
+  opacity: 0.7;
 }
 
 /* ============================================================
    RESPONZIVITA
    ============================================================ */
 @media (max-width: 600px) {
-  .cleni-soon {
-    padding: 32px 20px;
+  .cleni-card {
+    flex: 0 1 100%;
+    max-width: 340px;
   }
 }
