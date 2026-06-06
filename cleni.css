@@ -133,6 +133,12 @@ body {
   margin: 0 auto;
 }
 
+/* Varianta pro Admin tým: max 3 karty v řadě (3×2 u 6 karet).
+   3×270 + 2×24 = 858 px → omezíme šířku, aby se víc než 3 nevešly. */
+.cleni-grid--3col {
+  max-width: 858px;
+}
+
 .cleni-card {
   flex: 0 1 270px;
   max-width: 280px;
