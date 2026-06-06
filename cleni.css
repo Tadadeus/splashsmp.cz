@@ -146,8 +146,17 @@ body {
   border-radius: 50%;
   background: currentColor;
 }
-.role--red  { color: var(--c-red, #e53935); }
-.role--blue { color: var(--c-accent-h, #1a6fff); }
+.role--red  { color: var(--c-red, #e63d3b); }
+.role--darkred  { color: var(--c-red, #a71f1c); }
+.role--blue { color: var(--c-accent-h, #1b55ba); }
+.role--cyan { color: var(--c-accent-h, #1c9597); }
+.role--pink { color: var(--c-accent-h, #d13cb1); }
+.role--purple { color: var(--c-accent-h, #a12eb5); }
+.role--orange { color: var(--c-accent-h, #bb6f29); }
+.role--gray { color: var(--c-accent-h, #959595); }
+.role--yellow { color: var(--c-accent-h, #cdb439); }
+.role--green { color: var(--c-accent-h, #26ac17); }
+.role--darkgreen { color: var(--c-accent-h, #147109); }
 
 /* ------ Popis ------ */
 .cleni-card__desc {
