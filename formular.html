@@ -281,6 +281,7 @@
         }
         if (window.innerWidth <= 600) z = 1;
         dBox.style.setProperty('--inv-zoom', (1 / z).toFixed(4));
+        dBox.style.setProperty('--box-maxh', Math.round(window.innerHeight * z * 0.9) + 'px');
       }
       window.addEventListener('resize', () => {
         if (modal.classList.contains('is-open')) applyZoom();

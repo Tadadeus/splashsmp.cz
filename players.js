@@ -145,6 +145,8 @@ window.Players = (function () {
     if (!box) return;
     const z = window.innerWidth <= 600 ? 1 : pageZoom();   // mobil neřešíme
     box.style.setProperty("--inv-zoom", (1 / z).toFixed(4));
+    // Strop výšky tak, aby byl fyzicky ~90 % výšky okna (po counter-scale).
+    box.style.setProperty("--box-maxh", Math.round(window.innerHeight * z * 0.9) + "px");
   }
   // Zoom v prohlížeči spouští resize i událost na visualViewport.
   window.addEventListener("resize", () => {

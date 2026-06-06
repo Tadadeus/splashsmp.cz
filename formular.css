@@ -186,15 +186,9 @@ body {
   position: fixed;
   inset: 0;
   z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.35s ease, visibility 0s 0.35s;
-  /* Aby šel obsah scrollovat, když se modal nevejde (zoom / nízká obrazovka). */
-  overflow-y: auto;
 }
 
 .discord-modal.is-open {
@@ -212,13 +206,15 @@ body {
 }
 
 .discord-modal__box {
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
   z-index: 1;
-  /* Pevná velikost v px; JS counter-scale (--inv-zoom) → stejná fyzická
-     velikost na obrazovce při zoomu (in i out). Výška dle obsahu (px),
-     žádné vh, aby se výška při zoomu neměnila. */
+  /* Pevná velikost v px; JS counter-scale → stejná fyzická velikost při
+     zoomu. Centrování přes translate(-50%,-50%) nezávislé na velikosti. */
   width: 420px;
-  margin: auto;
+  max-height: var(--box-maxh, 760px);
+  overflow-y: auto;
   text-align: center;
   background: var(--c-bg-card);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -230,7 +226,7 @@ body {
   --inv-zoom: 1;
   --enter: 0.92;
   transform-origin: center center;
-  transform: scale(calc(var(--inv-zoom) * var(--enter)));
+  transform: translate(-50%, -50%) scale(calc(var(--inv-zoom) * var(--enter)));
   transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 

@@ -53,15 +53,9 @@
   position: fixed;
   inset: 0;
   z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.32s ease, visibility 0s 0.32s;
-  /* Scrollbar SE OBJEVÍ JEN když je karta vyšší než okno (krátké okno). */
-  overflow-y: auto;
 }
 .player-modal.is-open {
   opacity: 1;
@@ -78,14 +72,21 @@
 }
 
 .player-modal__box {
-  position: relative;
+  /* Absolutně vystředěná přes střed boxu → centrování nezávisí na tom,
+     jak je box velký (i když přesahuje viewport), takže scale pivotuje
+     přesně kolem středu a karta zůstává na místě i při zoomu. */
+  position: fixed;
+  top: 50%;
+  left: 50%;
   z-index: 1;
   /* PEVNÁ velikost v px (jako papír). JS nastaví counter-scale (--inv-zoom
-     = 1 / zoom), takže karta má při JAKÉMKOLI zoomu (in i out) stejnou
-     fyzickou velikost na obrazovce. Výška se řídí OBSAHEM (px) → při zoomu
-     se nemění, stejně jako šířka. Žádné vh, to by výšku při zoomu měnilo. */
+     = 1 / zoom) → karta má při JAKÉMKOLI zoomu (in i out) stejnou fyzickou
+     velikost. Výška se řídí obsahem (px), žádné vh. */
   width: 400px;
-  margin: auto;   /* aby zůstala vystředěná a dosažitelná, když overlay scrolluje */
+  /* Strop v px (ne vh) → fyzicky konstantní; jen u extrémně dlouhých karet
+     se scrolluje uvnitř. JS může strop dopočítat dle výšky okna (--box-maxh). */
+  max-height: var(--box-maxh, 760px);
+  overflow-y: auto;
   text-align: center;
   background: var(--c-bg-card);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -97,7 +98,8 @@
   --inv-zoom: 1;
   --enter: 0.92;
   transform-origin: center center;
-  transform: scale(calc(var(--inv-zoom) * var(--enter)));
+  /* translate(-50%,-50%) vystředí, scale dělá counter-zoom + vstupní animaci. */
+  transform: translate(-50%, -50%) scale(calc(var(--inv-zoom) * var(--enter)));
   transition: transform 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .player-modal.is-open .player-modal__box {
