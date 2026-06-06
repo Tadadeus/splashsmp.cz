@@ -214,28 +214,30 @@ body {
 .discord-modal__box {
   position: relative;
   z-index: 1;
-  /* PEVNÁ velikost v px; JS přidá counter-scale (--inv-zoom) → stejná
-     fyzická velikost na obrazovce při jakémkoli zoomu (jako papír). */
-  width: 420px;
-  max-height: 92vh;
+  /* Šířka = poměr k oknu (drží poměr při zoomu i změně okna); výška dle
+     obsahu, nejvýš 85 % výšky okna (zbytek se scrolluje uvnitř). */
+  width: 32vw;
+  max-height: 85vh;
   overflow-y: auto;
   text-align: center;
   background: var(--c-bg-card);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-top: 3px solid #5865F2;          /* Discord blurple */
   border-radius: var(--radius);
-  padding: 30px 28px 26px;
+  padding: 6% 6% 5%;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(88, 101, 242, 0.25);
 
-  --inv-zoom: 1;
-  --enter: 0.92;
-  transform: scale(calc(var(--inv-zoom) * var(--enter)));
+  transform: scale(0.92) translateY(8px);
   transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .discord-modal.is-open .discord-modal__box {
-  --enter: 1;
+  transform: scale(1) translateY(0);
 }
+
+/* Užší okno → širší karta, ať je obsah čitelný. */
+@media (max-width: 1100px) { .discord-modal__box { width: 46vw; } }
+@media (max-width: 820px)  { .discord-modal__box { width: 64vw; } }
 
 .discord-modal__close {
   position: absolute;
@@ -327,11 +329,10 @@ body {
     max-height: none;
   }
 
-  /* Discord popup – skoro celá šířka, counter-scale vypnut (CSS to řeší). */
+  /* Discord popup – skoro celá šířka, scroll uvnitř když je moc vysoký. */
   .discord-modal { padding: 12px; }
   .discord-modal__box {
     width: min(92vw, 380px);
-    --inv-zoom: 1;
     max-height: calc(100svh - 1.5rem);
     max-height: calc(100vh - 1.5rem);
     padding: 24px 18px 20px;
