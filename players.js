@@ -125,7 +125,38 @@ window.Players = (function () {
 
   // Najde modal podle id; když není na stránce, nic nedělá.
   const modal = () => document.getElementById("playerModal");
+  const modalBox = () => document.querySelector("#playerModal .player-modal__box");
   let modalHistoryPushed = false;
+
+  /* ── COUNTER-SCALE PROTI ZOOMU (funguje pro zoom IN i OUT) ──
+     Karta má pevnou velikost v px. Faktor zoomu spočítáme z poměru
+     šířky layoutu k vizuální šířce. Kartu zmenšíme/zvětšíme 1/zoom,
+     takže na obrazovce má pořád stejnou fyzickou velikost. */
+  function pageZoom() {
+    // Poměr vnější a vnitřní šířky okna = úroveň zoomu (funguje IN i OUT).
+    if (window.outerWidth > 0 && window.innerWidth > 0) {
+      const z = window.outerWidth / window.innerWidth;
+      if (z > 0.2 && z < 6) return z;
+    }
+    return 1;
+  }
+  function applyZoom() {
+    const box = modalBox();
+    if (!box) return;
+    const z = window.innerWidth <= 600 ? 1 : pageZoom();   // mobil neřešíme
+    box.style.setProperty("--inv-zoom", (1 / z).toFixed(4));
+  }
+  // Zoom v prohlížeči spouští resize i událost na visualViewport.
+  window.addEventListener("resize", () => {
+    const m = modal();
+    if (m && m.classList.contains("is-open")) applyZoom();
+  });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", () => {
+      const m = modal();
+      if (m && m.classList.contains("is-open")) applyZoom();
+    });
+  }
 
   function fillBody(p, opts) {
     const mBody = document.getElementById("playerModalBody");
@@ -147,6 +178,7 @@ window.Players = (function () {
     const m = modal();
     if (!p || !m) return;
     fillBody(p, opts);
+    applyZoom();                 // counter-scale podle aktuálního zoomu
     m.classList.add("is-open");
     m.setAttribute("aria-hidden", "false");
     document.documentElement.classList.add("no-scroll");

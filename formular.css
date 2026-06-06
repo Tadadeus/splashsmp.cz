@@ -214,30 +214,29 @@ body {
 .discord-modal__box {
   position: relative;
   z-index: 1;
-  /* Šířka = poměr k oknu (drží poměr při zoomu i změně okna); výška dle
-     obsahu, nejvýš 85 % výšky okna (zbytek se scrolluje uvnitř). */
-  width: 32vw;
-  max-height: 85vh;
+  /* Pevná velikost v px; JS counter-scale (--inv-zoom) → stejná fyzická
+     velikost na obrazovce při zoomu (in i out). */
+  width: 420px;
+  max-height: 90vh;
   overflow-y: auto;
   text-align: center;
   background: var(--c-bg-card);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-top: 3px solid #5865F2;          /* Discord blurple */
   border-radius: var(--radius);
-  padding: 6% 6% 5%;
+  padding: 30px 28px 26px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(88, 101, 242, 0.25);
 
-  transform: scale(0.92) translateY(8px);
+  --inv-zoom: 1;
+  --enter: 0.92;
+  transform-origin: center center;
+  transform: scale(calc(var(--inv-zoom) * var(--enter)));
   transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .discord-modal.is-open .discord-modal__box {
-  transform: scale(1) translateY(0);
+  --enter: 1;
 }
-
-/* Užší okno → širší karta, ať je obsah čitelný. */
-@media (max-width: 1100px) { .discord-modal__box { width: 46vw; } }
-@media (max-width: 820px)  { .discord-modal__box { width: 64vw; } }
 
 .discord-modal__close {
   position: absolute;
