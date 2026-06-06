@@ -243,24 +243,20 @@ ul { list-style: none; }
 /* Hamburger button */
 .hamburger {
   display: none;              /* skryt na desktopu */
-  width: 32px;
-  height: 22px;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   background: none;
   border: none;
-  padding: 0;
   flex-shrink: 0;
   position: relative;
   z-index: 901;
-  /* Větší touch target bez ovlivnění vizuálu */
-  margin: -10px;
-  padding: 10px;
-  width: 52px;
-  height: 42px;
-  align-items: center;
-  justify-content: center;
+  /* Dostatečný touch target; padding místo záporného marginu,
+     aby se otočený křížek neořezával u okraje obrazovky. */
+  width: 44px;
+  height: 44px;
+  padding: 8px;
   gap: 5px;
 }
 

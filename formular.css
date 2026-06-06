@@ -189,10 +189,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 16px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.35s ease, visibility 0s 0.35s;
+  /* Aby šel obsah scrollovat, když se modal nevejde (zoom / nízká obrazovka). */
+  overflow-y: auto;
 }
 
 .discord-modal.is-open {
@@ -214,8 +216,11 @@ body {
   z-index: 1;
   width: 100%;
   max-width: 420px;
-  max-height: 90vh;
+  /* Odečítáme padding modalu (2× 16px), svh řeší mobilní lišty i zoom. */
+  max-height: calc(100svh - 32px);
+  max-height: calc(100vh - 32px);
   overflow-y: auto;
+  margin: auto;
   text-align: center;
   background: var(--c-bg-card);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -304,6 +309,8 @@ body {
 .discord-modal__widget iframe {
   display: block;
   width: 100%;
+  /* Přepíše pevné height="400" v HTML – na nízkých obrazovkách se zmenší. */
+  height: clamp(260px, 42vh, 400px) !important;
   border: 0;
 }
 

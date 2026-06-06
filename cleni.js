@@ -21,7 +21,7 @@ const cleni = [
 // Sekce v pořadí, ve kterém se vykreslí.
 const sections = [
   { key: "admin", title: "Admin tým", subtitle: "Tým, který stojí za SplashSMP – majitelé, vývojáři a moderátoři komunity." },
-  { key: "hrac",  title: "Hráči" },
+  { key: "hrac",  title: "Hráči", subtitle: "Hráči, kteří tvoří srdce serveru a dělají SplashSMP tím, čím je." },
 ];
 
 // Sestaví HTML pro role (jedna nebo dvě).
@@ -54,9 +54,7 @@ if (root) {
       .map((p, i) => ({ p, i }))
       .filter(x => x.p.section === sec.key);
 
-    const body = members.length
-      ? `<div class="cleni-grid">${members.map(x => cardHTML(x.p, x.i)).join("")}</div>`
-      : `<p class="cleni-block__empty">Sekce se připravuje…</p>`;
+    const body = `<div class="cleni-grid">${members.map(x => cardHTML(x.p, x.i)).join("")}</div>`;
 
     const subtitle = sec.subtitle
       ? `<p class="cleni-block__subtitle">${sec.subtitle}</p>`
