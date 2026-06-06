@@ -60,6 +60,8 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.32s ease, visibility 0s 0.32s;
+  /* Scrollbar SE OBJEVÍ JEN když je karta vyšší než okno (krátké okno). */
+  overflow-y: auto;
 }
 .player-modal.is-open {
   opacity: 1;
@@ -78,9 +80,14 @@
 .player-modal__box {
   position: relative;
   z-index: 1;
-  /* PEVNÁ ŠÍŘKA – při zoomu se nestrečuje. Na úzkém okně se zúží na šířku
-     obrazovky mínus okraje. Výška se přizpůsobí obsahu (žádný scrollbar). */
-  width: min(380px, calc(100vw - 32px));
+  /* ŠÍŘKA = poměr k oknu (cca 1/5 šířky), ne pevné px → při zoomu
+     drží stejný poměr a nikdy se neroztáhne přes celé okno.
+     clamp: min. 260px (úzké mobily), ideál 22vw, max. 440px (velké obraz.). */
+  width: clamp(260px, 22vw, 440px);
+  /* Na opravdu úzkém okně (kde ani 260px nevejde) se přizpůsobí. */
+  max-width: calc(100vw - 24px);
+  /* Drží karty u sebe a reachable, když overlay scrolluje (krátké okno). */
+  margin: auto;
   text-align: center;
   background: var(--c-bg-card);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -196,3 +203,29 @@
   box-shadow: 0 6px 18px rgba(255, 0, 0, 0.4);
 }
 .player-modal__link--yt:hover { box-shadow: 0 8px 24px rgba(255, 0, 0, 0.6); }
+
+/* ============================================================
+   MOBIL – kompaktnější popup; když je i tak vyšší než obrazovka,
+   scrolluje UVNITŘ karty (ne ven mimo obrazovku).
+   ============================================================ */
+@media (max-width: 600px) {
+  .player-modal { padding: 12px; }
+
+  .player-modal__box {
+    width: min(90vw, 360px);
+    max-width: 90vw;
+    /* Nepřeteče výšku obrazovky – zbytek se scrolluje uvnitř karty. */
+    max-height: calc(100svh - 24px);
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    padding: 22px 18px 20px;
+  }
+
+  .player-modal__skin   { width: 88px; margin-bottom: 10px; }
+  .player-modal__name   { font-size: 1.25rem; margin-bottom: 10px; }
+  .player-modal__desc   { font-size: 0.9rem; margin: 12px 0; }
+  .player-modal__quote  { font-size: 0.85rem; padding: 10px 14px; }
+  .role-badges          { margin-bottom: 10px; }
+  .player-modal__links  { margin-top: 14px; gap: 8px; }
+  .player-modal__link   { padding: 10px 16px; font-size: 0.85rem; }
+}
