@@ -110,11 +110,21 @@ body {
 /* Popisek sekce (pod nadpisem) */
 .cleni-block__subtitle {
   max-width: 640px;
-  margin: 0 auto 34px;
+  margin: 0 auto 14px;
   text-align: center;
   color: var(--c-text-muted);
   font-size: clamp(0.95rem, 2vw, 1.05rem);
   line-height: 1.6;
+}
+
+/* Kurzívová poznámka pod popiskem sekce */
+.cleni-block__note {
+  max-width: 640px;
+  margin: 0 auto 34px;
+  text-align: center;
+  color: var(--c-text-dim);
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 .cleni-block__empty {
@@ -386,6 +396,35 @@ body {
   font-style: normal;
   opacity: 0.7;
 }
+
+/* ------ Odkaz na video (TikTok / YouTube) v popupu ------ */
+.player-modal__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 18px;
+  padding: 11px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #fff;
+  transition: transform var(--tr), box-shadow var(--tr), opacity var(--tr);
+}
+.player-modal__link i { font-size: 1.1em; }
+.player-modal__link:hover { transform: translateY(-2px); }
+
+.player-modal__link--tt {
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 18px rgba(37, 244, 238, 0.25);
+}
+.player-modal__link--tt:hover { box-shadow: 0 8px 24px rgba(254, 44, 85, 0.45); }
+
+.player-modal__link--yt {
+  background: #FF0000;
+  box-shadow: 0 6px 18px rgba(255, 0, 0, 0.4);
+}
+.player-modal__link--yt:hover { box-shadow: 0 8px 24px rgba(255, 0, 0, 0.6); }
 
 /* ============================================================
    RESPONZIVITA
