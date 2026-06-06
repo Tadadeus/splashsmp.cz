@@ -307,6 +307,33 @@ input:checked + .slider::before { transform: translateX(24px); }
 .js-reveal-history.is-visible { opacity: 1; transform: translateY(0); }
 
 /* ============================================================
+   UDÁLOST PROPOJENÁ S HRÁČEM (klik → popup)
+   ============================================================ */
+.has-player {
+  cursor: pointer;
+  outline: none;
+}
+/* Náznak klikatelnosti – ikonka hráče v rohu (přes ::before, ať se
+   nebije s šipkou .timeline-content::after). */
+.has-player::before {
+  content: "\f007";                 /* fa-user */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 0.8rem;
+  color: var(--c-accent);
+  opacity: 0.5;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 2;
+}
+.has-player:hover::before,
+.has-player:focus-visible::before { opacity: 1; transform: scale(1.15); }
+.interstitial-card.has-player { position: relative; }
+.has-player:hover { border-color: var(--c-accent) !important; }
+
+/* ============================================================
    ZVÝRAZNĚNÍ UDÁLOSTI PŘI PŘÍCHODU Z KARTY HRÁČE (#ev-...)
    ============================================================ */
 .event-highlight .timeline-content,

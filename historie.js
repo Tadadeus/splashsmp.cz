@@ -102,4 +102,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // Po načtení (a doběhnutí nativního skoku) zaměříme událost.
     window.addEventListener('load', () => setTimeout(() => focusEvent(id), 80));
   }
+
+  /* ────────────────────────────────────────────────────────
+     5. UDÁLOST → POPUP HRÁČE
+        Mapování id události → jméno hráče si vezmeme rovnou
+        z players.js (pole CLENI, pole "hist"). Žádné dvojí psaní.
+     ──────────────────────────────────────────────────────── */
+  if (window.Players && Array.isArray(window.CLENI)) {
+    // { "ev-ardaros": "Ardaros", ... }
+    const eventToPlayer = {};
+    window.CLENI.forEach(p => { if (p.hist) eventToPlayer[p.hist] = p.name; });
+
+    window.Players.initModalControls();
+
+    document.querySelectorAll('[id^="ev-"]').forEach(el => {
+      const playerName = eventToPlayer[el.id];
+      if (!playerName) return;
+
+      // Klikatelný je vnitřní obsah (karta), ne tlačítko meziudálosti.
+      const clickTarget = el.classList.contains('timeline-item')
+        ? el.querySelector('.timeline-content')
+        : el.querySelector('.interstitial-card');
+      if (!clickTarget) return;
+
+      clickTarget.classList.add('has-player');
+      clickTarget.setAttribute('role', 'button');
+      clickTarget.setAttribute('tabindex', '0');
+      clickTarget.title = `Zobrazit hráče ${playerName}`;
+
+      const openPlayer = (e) => {
+        // Klik na tlačítko meziudálosti necháme být (rozbaluje/sbaluje).
+        if (e.target.closest('.interstitial-btn')) return;
+        window.Players.openByName(playerName);
+      };
+      clickTarget.addEventListener('click', openPlayer);
+      clickTarget.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.Players.openByName(playerName); }
+      });
+    });
+  }
 });

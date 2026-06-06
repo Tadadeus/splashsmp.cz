@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="players.css" />
   <link rel="stylesheet" href="historie.css" />
 </head>
 <body>
@@ -806,7 +807,21 @@
     </div>
   </footer>
 
+  <!-- ════════════════════════════════════════
+       POPUP – DETAIL HRÁČE (sdílený s Členi přes players.js)
+  ════════════════════════════════════════ -->
+  <div class="player-modal" id="playerModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="player-modal__backdrop" data-close></div>
+    <div class="player-modal__box">
+      <button class="player-modal__close" aria-label="Zavřít" data-close>
+        <i class="fas fa-xmark"></i>
+      </button>
+      <div id="playerModalBody"></div>
+    </div>
+  </div>
+
   <script src="main.js"></script>
+  <script src="players.js"></script>
   <script src="historie.js"></script>
 </body>
 </html>
