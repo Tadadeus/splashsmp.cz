@@ -215,10 +215,10 @@ body {
   position: relative;
   z-index: 1;
   /* Pevná velikost v px; JS counter-scale (--inv-zoom) → stejná fyzická
-     velikost na obrazovce při zoomu (in i out). */
+     velikost na obrazovce při zoomu (in i out). Výška dle obsahu (px),
+     žádné vh, aby se výška při zoomu neměnila. */
   width: 420px;
-  max-height: 90vh;
-  overflow-y: auto;
+  margin: auto;
   text-align: center;
   background: var(--c-bg-card);
   border: 1px solid rgba(255, 255, 255, 0.1);
