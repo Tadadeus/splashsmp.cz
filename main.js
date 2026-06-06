@@ -56,6 +56,19 @@ document.addEventListener('DOMContentLoaded', () => {
     getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10
   ) || 68;
 
+  // Vycentruje daný cíl do prostoru pod navbarem.
+  const scrollToTarget = (target, smooth = true) => {
+    const rect = target.getBoundingClientRect();
+    const pageTop = rect.top + window.scrollY;          // absolutní pozice cíle
+    const visibleArea = window.innerHeight - NAV_HEIGHT; // prostor pod navbarem
+
+    let top = pageTop - NAV_HEIGHT - Math.max(0, (visibleArea - rect.height) / 2);
+    top = Math.max(0, top);
+
+    window.scrollTo({ top, behavior: smooth ? 'smooth' : 'auto' });
+  };
+
+  // Klik na odkaz se #kotvou na AKTUÁLNÍ stránce.
   document.querySelectorAll('.js-scroll').forEach(link => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
@@ -68,19 +81,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Počkáme, až se zavře mobilní menu a odemkne se scroll (.no-scroll),
       // jinak je layout zamčený a souřadnice cíle vyjdou špatně (skok dolů).
-      setTimeout(() => {
-        const rect = target.getBoundingClientRect();
-        const pageTop = rect.top + window.scrollY;          // absolutní pozice cíle
-        const visibleArea = window.innerHeight - NAV_HEIGHT; // prostor pod navbarem
-
-        // Vycentrovat cíl do prostoru pod navbarem (nikdy nad začátek stránky).
-        let top = pageTop - NAV_HEIGHT - Math.max(0, (visibleArea - rect.height) / 2);
-        top = Math.max(0, top);
-
-        window.scrollTo({ top, behavior: 'smooth' });
-      }, 320);   // 320 ms ≈ doba zavření menu (transform 0.42s, stačí část)
+      setTimeout(() => scrollToTarget(target), 320);
     });
   });
+
+  // Příchod z jiné stránky s #kotvou v URL (např. index.html#join).
+  // Prohlížeč by skočil na cíl bez korekce navbaru → srovnáme to sami.
+  if (window.location.hash.length > 1) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      // Po načtení (a po doběhnutí nativního skoku) cíl vycentrujeme.
+      window.addEventListener('load', () => {
+        setTimeout(() => scrollToTarget(target, false), 60);
+      });
+    }
+  }
 
   /* ────────────────────────────────────────────────────────
      3. NAVBAR – ztmavení po odscrollování (přes rAF)
