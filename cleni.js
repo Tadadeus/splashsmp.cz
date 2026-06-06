@@ -4,9 +4,10 @@
 // ==========================================================================
 const cleni = [
   { name: "Adas25",   role: "Majitel",   roleClass: "role--red",  desc: "Správce komunity a hlavní developer webu", quote: "Ardaros tahá se za nos" },
-  { name: "Tadadeus", role: "Majitel",   roleClass: "role--red",  desc: "Hlavní developer Minecraftu",              quote: "Chlochtahegenteorgendepenerpulandova předmětvěc" },
-  { name: "Tobiick",  role: "Majitel",   roleClass: "role--red",  desc: "Zakladatel a vedoucí discordu",            quote: "Karaklan si dam" },
-  { name: "Nojmisek", role: "Moderátor", roleClass: "role--blue", desc: "Pomáhá s komunitou a vývojem",             quote: "SplashSMP je nejlepší server" },
+  { name: "Tadadeus", role: "Majitel",   roleClass: "role--red",  desc: "Hlavní developer Minecraftu a tvůrce propagace", quote: "Chlochtahegenteorgendepenerpulandova předmětvěc" },
+  { name: "Tobiick",  role: "Majitel",   roleClass: "role--red",  desc: "Zakladatel SplashSMP a vedoucí discordu", quote: "Karaklan si dam" },
+  { name: "Nojmisek", role: "Moderátor", roleClass: "role--blue", desc: "Pomáhá s komunitou a vývojem serveru", quote: "SplashSMP je nejlepší server" },
+  { name: "___HEADhunter___", role: "Hráč", roleClass: "role--gray", desc: "OG člen, builder a redstone inženýr", quote: "Arstotzka je vždy o krok napřed..." },
 ];
 
 const grid = document.getElementById("cleniGrid");
