@@ -8,15 +8,13 @@
 const cleni = [
   // ── ADMIN TÝM ──
   { section: "admin", name: "Adas25",   role: "Majitel",   roleClass: "role--darkred",  desc: "Správce komunity a hlavní developer webu", quote: "Ardaros tahá se za nos", longDesc: "Adas je správce komunity a hlavní developer webu SplashSMP. Stará se o chod serveru, propagaci a celkovou vizi projektu." },
-  { section: "admin", name: "Tadadeus", role: "Majitel",   roleClass: "role--darkred", role2: "Soudce", roleClass2: "role--yellow", desc: "Hlavní developer Minecraftu a tvůrce propagace", quote: "Chlochtahegenteorgende penerpulandova předmětvěc", longDesc: "Tadadeus je hlavní developer Minecraft části serveru a tvůrce propagačního obsahu. Zároveň zastává roli soudce ve světě SplashSMP." },
+  { section: "admin", name: "Tadadeus", role: "Majitel",   roleClass: "role--darkred", role2: "Soudce", roleClass2: "role--orange", desc: "Hlavní developer Minecraftu a tvůrce propagace", quote: "Chlochtahegenteorgende penerpulandova předmětvěc", longDesc: "Tadadeus je hlavní developer Minecraft části serveru a tvůrce propagačního obsahu. Zároveň zastává roli soudce na serveru SplashSMP." },
   { section: "admin", name: "Tobiick",  role: "Majitel",   roleClass: "role--darkred",  desc: "Zakladatel SplashSMP a vedoucí discordu", quote: "Karaklan si dam", longDesc: "Tobiick je zakladatel SplashSMP a vedoucí Discordu. Stojí za zrodem celého projektu a stará se o komunitu." },
   { section: "admin", name: "Nojmisek", role: "Moderátor", roleClass: "role--blue", desc: "Pomáhá s komunitou a vývojem serveru", quote: "SplashSMP je nejlepší server", longDesc: "Nojmisek je moderátor, který pomáhá s komunitou i s vývojem serveru. Dohlíží na pořádek a aktivně se zapojuje do dění." },
   { section: "admin", name: "Itzz_MaTk0", role: "Moderátor", roleClass: "role--blue", desc: "Pomáhá s komunitou, hraje PvP", quote: "Palička je moje síla", longDesc: "Itzz_MaTk0 je moderátor a vášnivý PvP hráč. Pomáhá s komunitou a v boji se neztratí." },
-  { section: "admin", name: "___HEADhunter___", role: "Helper", roleClass: "role--lightblue", desc: "OG člen, helper, builder a redstone inženýr", quote: "Arstotzka je vždy o krok napřed...", longDesc: "___HEADhunter___ je OG člen serveru, helper, builder a redstone inženýr. Patří k legendám SplashSMP." },
+  { section: "admin", name: "___HEADhunter___", role: "Helper", roleClass: "role--lightblue", desc: "OG člen, helper, builder a redstone inženýr", quote: "Arstotzka je vždy o krok napřed...", longDesc: "HEADhunter je OG člen serveru, helper, builder a redstone inženýr. Patří k legendám SplashSMP." },
 
   // ── HRÁČI ──
-  // Sem přidávej běžné hráče:
-  // { section: "hrac", name: "...", role: "Hráč", roleClass: "role--gray", desc: "...", quote: "...", longDesc: "..." },
 
 ];
 
