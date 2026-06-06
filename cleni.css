@@ -100,6 +100,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* Stejná minimální výška pro všechny karty → žádná není vyšší než druhá */
+  min-height: 380px;
   transition: border-color var(--tr), transform var(--tr), box-shadow var(--tr);
 }
 
@@ -164,12 +166,15 @@ body {
   color: var(--c-text-muted);
   line-height: 1.55;
   margin-bottom: 16px;
+  /* Vyhrazené místo na ~2 řádky → citace u všech karet začíná stejně */
+  min-height: 2.8em;
 }
 
 /* ------ Citace / quote box ------ */
 .cleni-card__quote {
   width: 100%;
-  margin-top: auto;
+  /* Žádné margin-top: auto → citace začíná hned pod popisem (zarovnání
+     odshora) a roste směrem dolů. Všechny karty jsou stejně vysoké. */
   font-size: 0.85rem;
   font-style: italic;
   color: var(--c-text-dim);
