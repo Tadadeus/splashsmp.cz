@@ -4,6 +4,8 @@
 // roleClass: "role--red" (Majitel), "role--blue" (Moderátor) …
 // VOLITELNÉ: role2 + roleClass2 = druhá role (když chybí, nezobrazí se).
 // longDesc:  delší popis, zobrazí se v popup okně po kliknutí na kartu.
+// skin:      přepíše skin podle jiného jména (např. hráč co změnil nick).
+//            Když chybí, použije se skin podle "name".
 // ==========================================================================
 const cleni = [
   // ── ADMIN TÝM ──
@@ -15,6 +17,7 @@ const cleni = [
   { section: "admin", name: "___HEADhunter___", role: "Helper", roleClass: "role--lightblue", desc: "OG člen, helper, builder a redstone inženýr", quote: "Arstotzka je vždy o krok napřed...", longDesc: "HEADhunter je OG člen serveru, helper, builder a redstone inženýr. Patří k legendám SplashSMP." },
 
   // ── HRÁČI ──
+  { section: "hrac", name: "Ardaros", skin: "Allah", role: "Hacker", roleClass: "role--red", desc: "Legendární hacker serveru, o kterém vznikla řada videí", quote: "Vykvasim ti kabanos...", longDesc: "Ardaros je nejznámější hacker v historii SplashSMP. Několikrát hacknul server, odpálil spawn a stal se tak doslova legendou – natočili jsme o něm přes 10 videí. Jeho lore se postupně odhaluje napříč sezónami. Více o jeho řádění najdeš v sekci Historie." },
 
 ];
 
@@ -23,6 +26,11 @@ const sections = [
   { key: "admin", title: "Admin tým", subtitle: "Tým, který stojí za SplashSMP – majitelé, vývojáři a moderátoři komunity." },
   { key: "hrac",  title: "Hráči", subtitle: "Hráči, kteří tvoří srdce serveru a dělají SplashSMP tím, čím je." },
 ];
+
+// Jméno pro vykreslení skinu – přepsatelné přes "skin" (změna nicku apod.).
+function skinName(p) {
+  return encodeURIComponent(p.skin || p.name);
+}
 
 // Sestaví HTML pro role (jedna nebo dvě).
 function rolesHTML(p) {
@@ -36,7 +44,7 @@ function rolesHTML(p) {
 function cardHTML(p, index) {
   return `
     <article class="cleni-card" data-index="${index}" tabindex="0" role="button" aria-label="Zobrazit detail hráče ${p.name}">
-      <img class="cleni-card__skin" src="https://vzge.me/bust/256/${p.name}" alt="${p.name}" loading="lazy" />
+      <img class="cleni-card__skin" src="https://vzge.me/bust/256/${skinName(p)}" alt="${p.name}" loading="lazy" />
       <h3 class="cleni-card__name">${p.name}</h3>
       ${rolesHTML(p)}
       <p class="cleni-card__desc">${p.desc}</p>
@@ -80,7 +88,7 @@ if (root) {
     const p = cleni[i];
     if (!p || !modal) return;
     mBody.innerHTML = `
-      <img class="player-modal__skin" src="https://vzge.me/full/384/${p.name}" alt="${p.name}" />
+      <img class="player-modal__skin" src="https://vzge.me/full/384/${skinName(p)}" alt="${p.name}" />
       <h3 class="player-modal__name">${p.name}</h3>
       ${rolesHTML(p)}
       <p class="player-modal__desc">${p.longDesc || p.desc}</p>
