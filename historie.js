@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { player: "Martinjefrajer", words: ["martin"] },
       { player: "Kripi33",        words: ["kripi"] },
       { player: "Gingo13",        words: ["gingo", "ging "] },
+      { player: "Paldes12",       words: ["paldes", "shadow mafia"] },
     ];
 
     // Spočti, kolikrát je každý hráč v ose zmíněn (pro výběr "nejvýznamnějšího").
