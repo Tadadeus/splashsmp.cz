@@ -130,6 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
       { player: "SindlSin",       words: ["šindl", "sindl"] },
       { player: "bratranec",      words: ["bratranec", "bratrance"] },
       { player: "Martinjefrajer", words: ["martin"] },
+      { player: "Kripi33",        words: ["kripi"] },
+      { player: "Gingo13",        words: ["gingo", "ging "] },
     ];
 
     // Spočti, kolikrát je každý hráč v ose zmíněn (pro výběr "nejvýznamnějšího").
@@ -154,7 +156,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     allCards.forEach(card => {
-      const playerName = playerForText(card.textContent);
+      // Ruční přepis přes data-player na .timeline-item / .timeline-interstitial:
+      //   data-player="Jmeno" → vždy tento hráč
+      //   data-player=""       → žádný popup (vypnuto)
+      const holder = card.closest('[data-player]');
+      let playerName;
+      if (holder) {
+        const forced = holder.getAttribute('data-player').trim();
+        if (forced === "") return;                 // popup vypnut
+        playerName = window.Players.findByName(forced) ? forced : null;
+      } else {
+        playerName = playerForText(card.textContent);
+      }
       if (!playerName) return;
 
       card.classList.add('has-player');
