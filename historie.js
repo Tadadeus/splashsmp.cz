@@ -5,6 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // (Hamburger / mobilní menu řeší sdílený main.js – tady nic netřeba.)
 
   /* ────────────────────────────────────────────────────────
+     0. AUTOMATICKÉ STŘÍDÁNÍ STRAN (left/right)
+        Není třeba ručně psát left/right do HTML. Projdeme události
+        v pořadí a střídavě jim přiřadíme stranu. Meziudálosti
+        (.timeline-interstitial) ani nadpisy ér nejsou .timeline-item,
+        takže se přirozeně přeskočí a střídání nerozhodí.
+     ──────────────────────────────────────────────────────── */
+  document.querySelectorAll('.timeline-item').forEach((item, i) => {
+    item.classList.remove('left', 'right');
+    item.classList.add(i % 2 === 0 ? 'left' : 'right');
+  });
+
+  /* ────────────────────────────────────────────────────────
      1. PŘEPÍNAČ DAT (ZDE POKRAČUJE TVŮJ DALŠÍ KÓD...)
      ──────────────────────────────────────────────────────── */
   const dateToggle = document.getElementById('dateToggle');
