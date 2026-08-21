@@ -5,6 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // (Hamburger / mobilní menu řeší sdílený main.js – tady nic netřeba.)
 
   /* ────────────────────────────────────────────────────────
+     0. AUTOMATICKÉ STŘÍDÁNÍ STRAN (left/right)
+        Není třeba ručně psát left/right do HTML. Projdeme události
+        v pořadí a střídavě jim přiřadíme stranu. Meziudálosti
+        (.timeline-interstitial) ani nadpisy ér nejsou .timeline-item,
+        takže se přirozeně přeskočí a střídání nerozhodí.
+     ──────────────────────────────────────────────────────── */
+  document.querySelectorAll('.timeline-item').forEach((item, i) => {
+    item.classList.remove('left', 'right');
+    item.classList.add(i % 2 === 0 ? 'left' : 'right');
+  });
+
+  /* ────────────────────────────────────────────────────────
      1. PŘEPÍNAČ DAT (ZDE POKRAČUJE TVŮJ DALŠÍ KÓD...)
      ──────────────────────────────────────────────────────── */
   const dateToggle = document.getElementById('dateToggle');
@@ -130,6 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
       { player: "SindlSin",       words: ["šindl", "sindl"] },
       { player: "bratranec",      words: ["bratranec", "bratrance"] },
       { player: "Martinjefrajer", words: ["martin"] },
+      { player: "Kripi33",        words: ["kripi"] },
+      { player: "Gingo13",        words: ["gingo", "ging "] },
+      { player: "Paldes12",       words: ["paldes", "shadow mafia"] },
     ];
 
     // Spočti, kolikrát je každý hráč v ose zmíněn (pro výběr "nejvýznamnějšího").
@@ -154,7 +169,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     allCards.forEach(card => {
-      const playerName = playerForText(card.textContent);
+      // Ruční přepis přes data-player na .timeline-item / .timeline-interstitial:
+      //   data-player="Jmeno" → vždy tento hráč
+      //   data-player=""       → žádný popup (vypnuto)
+      const holder = card.closest('[data-player]');
+      let playerName;
+      if (holder) {
+        const forced = holder.getAttribute('data-player').trim();
+        if (forced === "") return;                 // popup vypnut
+        playerName = window.Players.findByName(forced) ? forced : null;
+      } else {
+        playerName = playerForText(card.textContent);
+      }
       if (!playerName) return;
 
       card.classList.add('has-player');

@@ -59,7 +59,10 @@ body {
   line-height: 1.15;
   margin-bottom: 16px;
   letter-spacing: -0.01em;
-  text-shadow: 0 0 40px rgba(0, 94, 255, 0.2);
+  background: linear-gradient(120deg, #fff 30%, var(--c-accent-h) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* ── Přepínač zobrazení dat (Toggle Switch) ── */
@@ -158,16 +161,8 @@ input:checked + .slider::before { transform: translateX(24px); }
 .timeline-content h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; color: #fff; }
 .timeline-content p { font-size: 0.9rem; color: var(--c-text-muted); line-height: 1.5; }
 
-/* ============================================================
-   🥚 EASTER EGG – ARDAROS (legendární hacker)
-   Vykukuje zpoza karty, hlava nad horní hranou.
-   ============================================================ */
 .ardaros-card {
-  overflow: visible;            /* aby hlava mohla přesahovat vedle karty */
-  /* DŮLEŽITÉ: žádný backdrop-filter na této kartě.
-     Backdrop-filter se po změně výšky (přepínač dat) nepřekresloval
-     a karta mizela. Místo blur efektu používáme pevné tmavé pozadí,
-     které vypadá stejně jako ostatní skleněné karty, ale vždy se vykreslí. */
+  overflow: visible;
   background: rgba(20, 20, 22, 0.92) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -312,6 +307,8 @@ input:checked + .slider::before { transform: translateX(24px); }
 .has-player {
   cursor: pointer;
   outline: none;
+  /* Pomalejší přechod barvy okraje (i při sjetí kurzorem). */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.55s ease;
 }
 /* Náznak klikatelnosti – ikonka hráče v rohu (přes ::before, ať se
    nebije s šipkou .timeline-content::after). */
