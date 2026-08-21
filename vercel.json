@@ -1,3 +1,10 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/dalsiprojekty",
+      "destination": "https://www.youtube.com/playlist?list=PLDbgm4KC6EjESIvOLWDMeG1xPXIDmyRdKN",
+      "permanent": true
+    }
+  ]
 }
