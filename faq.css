@@ -288,6 +288,10 @@ body {
 .contact-card--email     { --brand: var(--c-accent-h); }
 .contact-card--linktree  { --brand: #43E660; }   /* Linktree zelená */
 
+.dsc {
+  text-decoration: underline;
+  color: rgb(216, 118, 255);
+}
 /* ============================================================
    RESPONZIVITA
    ============================================================ */

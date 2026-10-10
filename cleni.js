@@ -92,7 +92,7 @@ if (root) {
 (function () {
   const el = document.getElementById("seasonTimer");
   if (!el) return;
-  const start = new Date(2026, 3, 16, 19, 0, 0); // 16.4.2026 19:00
+  const start = new Date(2026, 11, 16, 19, 0, 0); // 16.12.2026 19:00
 
   function tick() {
     const diff = Date.now() - start.getTime();
